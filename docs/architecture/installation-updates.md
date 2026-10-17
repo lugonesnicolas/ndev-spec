@@ -46,7 +46,7 @@ B es el árbol de la revisión registrada; L comprende índice, archivos locales
 
 La equivalencia exige mismas rutas, tipos y contenido versionado; los modos deben conservarse cuando sean significativos y representables. Comprobar blobs de Git además de la ausencia de modificaciones entre índice y copia de trabajo: un cambio local ya confirmado también es divergencia respecto de B. Para comparar repositorios con distintos formatos de objetos, comparar contenido de blobs, no sus identificadores entre formatos.
 
-Se admite exclusivamente la conversión LF/CRLF de texto realizada por Git y comprobable en el índice. No normalizar contenido arbitrariamente ni ocultar cambios de líneas mixtas o archivos binarios. Revisar atributos efectivos y configuración del consumidor: filtros clean/smudge, `working-tree-encoding`, `ident` u otras transformaciones que impidan identidad bloquean. No desactivar controles existentes para continuar. Un cambio de atributos o configuración entre revisión y aplicación invalida la propuesta.
+Se admite exclusivamente la conversión LF/CRLF de texto realizada por Git y comprobable en el índice. No normalizar contenido arbitrariamente ni ocultar cambios de líneas mixtas o archivos binarios. Revisar atributos efectivos y configuración del consumidor, tanto actuales como los que resultarían de T: filtros clean/smudge, `working-tree-encoding`, `ident` u otras transformaciones que impidan identidad bloquean. Si T incorpora o modifica `.gitattributes`, evaluar su efecto en una copia temporal del estado propuesto antes de copiar al consumidor, sin ejecutar filtros. No desactivar controles existentes para continuar. Un cambio de atributos o configuración entre revisión y aplicación invalida la propuesta.
 
 Mostrar B→L (divergencias), B→T (cambio del origen) y L→resultado propuesto, incluida la sección de PROJECT. El inventario debe mostrar altas, modificaciones y bajas, no solo el diff de archivos rastreados. Para una instalación sin B, mostrar todas las incorporaciones y la edición del contrato. Si L equivale a B y T es la misma revisión, la operación es sin cambios; si solo cambia el commit pero el canon es idéntico, revisar también esa actualización de procedencia.
 
@@ -68,6 +68,38 @@ Antes de aplicar, mantener fuera del consumidor las extracciones comprobadas y u
 | Recuperación después del commit | Crear un nuevo cambio explícito al commit anterior mediante este mismo procedimiento y su revisión; no resetear historia ni hacer force push. |
 
 No se garantiza atomicidad de archivos ni protección frente a escritores concurrentes durante la copia. Coordinar acceso exclusivo durante la aplicación manual, volver a validar antes y después, y detenerse si se detecta concurrencia. El commit final reúne canon y procedencia coherentes. No tratar una instalación parcial como canon disponible para trabajo cotidiano.
+
+## Procedimiento manual
+
+Estos pasos usan Git, un editor y herramientas de archivos; no son comandos de ndev-spec ni requieren un proveedor. Sustituir los marcadores `<...>` por valores reales y citar las rutas según el shell. Las escrituras al consumidor comienzan en el paso 5.
+
+1. **Preparar el consumidor.** Leer sus instrucciones y contrato; coordinar acceso exclusivo. Inspeccionar rama, `git status --short --untracked-files=all`, índice y archivos ignorados; identificar C con `git rev-parse HEAD`. Si falta Git o C, prepararlos primero; si hay cambios, resolverlos fuera de la operación. Enumerar el sistema de archivos incluyendo ocultos, sin seguir enlaces/reparse points; comprobar `.ai`, PROJECT y sus padres. Guardar fuera del consumidor un inventario del estado revisado y de archivos propios para comprobar su preservación. Un status limpio no sustituye esta inspección.
+2. **Obtener revisiones exactas.** Elegir origen y referencia, obtenerlos en una ubicación separada y resolver a OID completo. Para actualizar, leer B del único registro de PROJECT; para instalar o adoptar, revisar explícitamente el registro propuesto. Comprobar disponibilidad de B y T. Ejemplos de inspección con Git:
+
+   ```text
+   git -C <origen-local> rev-parse --verify <referencia>^{commit}
+   git -C <origen-local> cat-file -t <OID>
+   git -C <origen-local> ls-tree -r <OID> -- .ai
+   ```
+
+   Una revisión real disponible localmente es `de238169dd7eda60404de40523e6440497356dce`; no asumir que existe en el remoto ni en `main`. Si la ruta local es el origen estable elegido, registrarla; si es una copia temporal, conservar el origen comprobado al que corresponde.
+3. **Preparar extracciones comprobadas.** Extraer B y T a temporales separados y vacíos, fuera del consumidor. Se puede usar `git archive --format=zip --output=<archivo-temporal> <OID> .ai` y un extractor, previa inspección de tipos y rutas. Comparar todas las rutas, modos y contenidos contra `ls-tree` y los blobs (`git cat-file blob <blob-OID>`). `git hash-object --no-filters <archivo-extraído>` en el repositorio de origen permite comparar un archivo sin conversiones. `export-ignore` o `export-subst` pueden alterar un archive: si no coincide, no aplicarlo; obtener los blobs exactos o corregir la preparación y comprobar nuevamente. Guardar el inventario de operaciones y C fuera del consumidor.
+4. **Revisar la propuesta.** Comparar B/L/T. Inspeccionar `git check-attr --all -- .ai/<archivo>` para cada ruta afectada, configuración de finales de línea y filtros, y atributos que afectarían a archivos nuevos. Si sparse checkout, `assume-unchanged` o `skip-worktree` afectan al canon, detenerse hasta disponer de una copia completa verificable. Mostrar diff, altas y bajas; los temporales permiten comparar contenido sin importar historial al consumidor. Revisar el texto propuesto de PROJECT en una copia temporal. Resolver colisiones o divergencias con respaldo y repetir desde el paso 1. Acordar el resultado antes de escribir.
+5. **Revalidar y aplicar.** Confirmar que C, índice, inventario, archivos y atributos siguen iguales al estado revisado. Copiar solo archivos aprobados de T, retirar solo bajas conocidas de B y editar solo la sección acordada de PROJECT (o crear el contrato propio acordado). Antes de reemplazar un directorio por un archivo comprobar todas sus entradas, incluidos ignorados. No realizar reemplazos recursivos generales ni borrar todavía los temporales. Ante un fallo, usar la recuperación acotada y mantener la operación pendiente.
+6. **Verificar y confirmar.** Preparar únicamente las rutas aprobadas en el índice. Si ignore impide rastrearlas, detenerse y resolver con el consumidor; no forzar su incorporación silenciosamente. Comparar rutas y blobs del índice bajo `.ai/` con T, comprobar copia de trabajo sin cambios respecto del índice y volver a enumerar ocultos/ignorados. `git ls-files --stage -- .ai` muestra el índice y `git ls-files --eol -- .ai` ayuda a revisar finales de línea. Confirmar registro T, preservación de archivos propios, diff preparado limitado a la operación y `git diff --cached --check` satisfactorio. Crear un commit conjunto y comprobar su árbol, registro y status. Si falla, inspeccionar modificaciones de hooks antes de reintentar. Si no hay cambios, no generar un commit vacío.
+7. **Cerrar o recuperar.** Registrar el commit final en la evidencia del consumidor; la instalación inicial no necesita copiar specs de ndev-spec ni inventar una spec artificial. En proyectos que usan SDD, respetar sus gates y Ship. Retirar temporales solo después de confirmar el resultado, o conservarlos para recuperar un estado pendiente. Para volver a una revisión anterior confirmada, seleccionarla como T y repetir en un nuevo cambio. La lectura diaria usa la copia instalada y el contexto local sin consultar el origen.
+
+### Ejemplos de resultado revisado
+
+| Situación | Propuesta y resultado esperado |
+| --- | --- |
+| Proyecto nuevo sin `.ai/` ni PROJECT | C inicial; archivos de T como altas; PROJECT propio con contexto y registro. Un commit contiene ambos. |
+| Proyecto con PROJECT, AGENTS y specs propios | Pausa para revisar PROJECT; incorporación de sección acordada y `.ai/`. AGENTS y specs permanecen idénticos. |
+| Copia exacta de B sin registro estructurado | Adopción explícita tras comprobación; edición de procedencia, sin recopia destructiva ni inferencia de B. |
+| T agrega una regla, cambia otra y retira un placeholder | Mostrar las tres operaciones. La baja solo procede si el placeholder local pertenece a B y no cambió. |
+| L agrega `.ai/privado.md`, aunque esté ignorado | Bloqueo; conservarlo y resolver su ubicación o propuesta al origen antes de retomar. |
+| T es la revisión registrada y L coincide con B | Ninguna escritura ni commit nuevo, con registro válido. |
+| Copia de T terminada pero PROJECT todavía señala B | Operación parcial pendiente: completar tras nueva revisión o restaurar ambas partes a C. |
 
 ## Límites y siguiente etapa
 

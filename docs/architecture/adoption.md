@@ -14,7 +14,7 @@ Cada repositorio consumidor guarda una copia local de `.ai/` tomada de una revis
 
 La convención normativa para el identificador de cambio se documenta en [el workflow](../../.ai/workflow.md): número secuencial local más nombre descriptivo, sin estado auxiliar ni dependencia del nombre de rama. Cada fase conserva su artefacto breve y su gate.
 
-Una actualización futura deberá mostrar diferencias y preservar `PROJECT.md`, `specs/` y archivos ajenos al core. Si `.ai/` fue modificado en el consumidor, se deberá resolver esa divergencia antes de reemplazarlo. El instalador, formato de paquete y mecanismo de actualización se diseñarán por separado.
+Una actualización debe mostrar diferencias y preservar `PROJECT.md`, `specs/` y archivos ajenos al core. Si `.ai/` fue modificado en el consumidor, se debe resolver esa divergencia antes de reemplazarlo. La [decisión de instalación y actualización](installation-updates.md), correspondiente a `002`, desarrolla el mecanismo manual: Git, revisión exacta, sección de procedencia en PROJECT, comparación base/local/destino y recuperación. La pausa ante contenido preexistente permite revisión y adopción explícita de una copia idéntica; nunca autoriza sobrescritura ciega. El instalador y el formato de paquete automatizado siguen pendientes.
 
 ## Alternativas consideradas
 

@@ -17,9 +17,11 @@ Cada archivo se crea cuando se trabaja su fase. Basta con Markdown breve que per
 
 ## Incorporar el harness en otro proyecto
 
-1. Elegir una revisión exacta de este repositorio, por ejemplo un commit de Git. Obtener esa revisión y comprobar que el árbol de origen corresponde al commit elegido; no usar una copia de trabajo con cambios sin registrar.
-2. Revisar si el proyecto ya tiene `.ai/` o `PROJECT.md`. Si alguno existe, detener la copia y resolver su contenido y propiedad. Revisar también las instrucciones existentes para agentes: se conservan y se enlazan al canon manualmente cuando corresponda.
-3. Copiar únicamente `.ai/` desde la revisión elegida a la raíz del proyecto. En `PROJECT.md`, registrar propósito, stack, restricciones, comprobaciones, condiciones de Ship, URL o ruta del repositorio de origen y el commit exacto copiado. Ese archivo y `specs/` pertenecen al proyecto consumidor; no copiar las specs ni la documentación histórica de ndev-spec.
-4. Leer el canon copiado y empezar `specs/001-<nombre>/` cuando surja el primer cambio. Las referencias internas de `.ai/` funcionan con esa copia local, sin consultar el repositorio de origen durante el trabajo.
+Seguir el [procedimiento manual de instalación y actualización](docs/architecture/installation-updates.md#procedimiento-manual). Requiere Git, un commit de recuperación y un estado limpio antes de aplicar. El uso cotidiano del canon instalado permanece local y no requiere conexión al origen.
 
-Mantener `.ai/` sin modificaciones locales facilita comparar revisiones. Para una actualización futura, revisar las diferencias antes de reemplazar el core y preservar `PROJECT.md`, `specs/` y archivos ajenos. El mecanismo de instalación y actualización automática aún no está definido; [la decisión de adopción](docs/architecture/adoption.md) establece sus límites.
+1. Elegir un origen Git y resolver la revisión a un commit completo. Preparar y comprobar únicamente su árbol `.ai/`, sin copiar el árbol de trabajo del origen.
+2. Revisar colisiones, archivos ignorados e instrucciones existentes. Si ya existen `.ai/` o `PROJECT.md`, detener la copia hasta resolver su contenido y propiedad; una copia idéntica puede adoptarse explícitamente.
+3. Revisar todos los cambios antes de aplicarlos. El consumidor conserva su contexto en PROJECT y registra origen y revisión en una sección única `## ndev-spec`. `PROJECT.md`, `specs/` e instrucciones de agentes son propios: no importarlos desde ndev-spec.
+4. Aplicar el conjunto revisado, comprobar canon y procedencia, preservar archivos ajenos y confirmar ambos en Git. Leer el canon local y abrir la siguiente spec disponible cuando surja un cambio; en un consumidor nuevo será `001`.
+
+Para actualizar, el procedimiento compara revisión registrada, copia local y revisión destino. Las divergencias dentro de `.ai/` bloquean el reemplazo hasta resolverse con respaldo; una interrupción exige completar o recuperar el conjunto afectado. La [decisión arquitectónica](docs/architecture/installation-updates.md) explica alternativas, fallos y recuperación. No existe instalador ni actualización automática; [002](specs/002-install-update-design/spec.md) entrega su diseño y ensayos manuales.

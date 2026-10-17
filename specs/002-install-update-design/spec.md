@@ -29,4 +29,4 @@ Ship requiere commits locales coherentes en `docs/install-update-design`, creada
 
 ## Handoff
 
-Se revisaron AGENTS, PROJECT, canon, reglas, arquitectura y Git. Única spec previa: `001`; siguiente número revalidado: `002`. No había cambios locales. Las decisiones de producto quedaron resueltas por el usuario: procedencia en PROJECT, canon exacto, Git obligatorio, origen elegido y entrega local. Siguiente fase: persistir Plan y decisión arquitectónica; todavía no se han ejecutado cambios de producto.
+Se revisaron AGENTS, PROJECT, canon, reglas, arquitectura y Git. Única spec previa: `001`; siguiente número revalidado: `002`. No había cambios locales. Las decisiones de producto quedaron resueltas por el usuario: procedencia en PROJECT, canon exacto, Git obligatorio, origen elegido y entrega local. Plan y decisión se persistieron antes de Tasks y de los cambios derivados. Implementation documental y Verification completas; siguiente fase: Ship local. El contrato no cambió durante Implementation ni Verification.
