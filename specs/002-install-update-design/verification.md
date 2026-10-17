@@ -1,6 +1,6 @@
 # Verification — 002-install-update-design
 
-Estado: Verification completa; gate de salida cumplido. Ship pendiente del commit de entrega y su cierre posterior.
+Estado: Verification completa y Ship cerrado; ambos gates de salida cumplidos.
 
 ## Método y evidencia
 
@@ -53,4 +53,12 @@ Se ensayó en Windows y con repositorios locales. No se probó transporte remoto
 
 ## Handoff
 
-R1–R10 satisfechos con evidencia y sin desviaciones materiales pendientes. Próximo paso: confirmar el producto y la evidencia en la rama local, comprobar Git y registrar Ship mediante cierre posterior. No se publica ni integra ninguna rama.
+R1–R10 satisfechos con evidencia y sin desviaciones materiales pendientes. El producto y la evidencia se confirmaron y se comprobaron antes del cierre siguiente. No se publicó ni integró ninguna rama.
+
+## Ship
+
+Entrega local completada en `docs/install-update-design`: decisión previa y gates de entrada en `7a0ab8f`; producto documental y evidencia en `34e2180b8c566a4de5ac5b053e3f4974d33d4919`. Se confirmó ese commit como HEAD con árbol e índice limpios antes de este cierre. `git diff --cached --check` previo al commit y `git diff --check de23816..HEAD` posteriores: satisfactorios. La revisión final de 22 documentos y 43 enlaces no encontró errores.
+
+Se confirmó que `.ai/` y `specs/001-readme-manual-sdd/` son idénticos a B; las refs `docs/readme-manual-sdd` y `main` conservan sus commits iniciales. No hubo push, PR, integración ni reescritura de historia. Este registro y los handoffs finales se incorporan mediante un commit documental posterior, sin intentar referenciar el commit que los contiene.
+
+Handoff final: diseño y procedimiento manual entregados y verificados. No quedan pendientes del contrato 002. Una implementación futura del instalador o comandos debe abrir la siguiente spec disponible, revalidar las decisiones aplicables y cumplir sus propios gates; estos ensayos no verifican una implementación automatizada. Integrar las ramas existentes en main no fue parte de esta entrega.

@@ -10,4 +10,4 @@ Estado: Implementation documental completa; gate de salida cumplido. Se revisaro
 
 ## Handoff
 
-T1–T3 produjeron documentación revisable; no hay bloqueos de Implementation. Durante Verification se precisó en T1 la inspección de atributos introducidos por el destino; no cambió el contrato ni el enfoque y se revalidó Implementation antes del ensayo E20. Verification está completa con evidencia por requisito en `verification.md`; siguiente fase: Ship local. Los auxiliares de ensayo no se incorporaron al producto.
+T1–T3 produjeron documentación revisable; no hay bloqueos de Implementation. Durante Verification se precisó en T1 la inspección de atributos introducidos por el destino; no cambió el contrato ni el enfoque y se revalidó Implementation antes del ensayo E20. Verification y Ship local están completos en `verification.md`. Los auxiliares de ensayo no se incorporaron al producto. No quedan tareas pendientes de 002; la automatización requiere otra spec.
