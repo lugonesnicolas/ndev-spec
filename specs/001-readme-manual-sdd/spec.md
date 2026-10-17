@@ -1,6 +1,6 @@
 # 001 — Uso manual y adopción portable
 
-Estado: Specification completa; gate de salida cumplido.
+Estado: Specification vigente; gate de salida revalidado tras precisar R8.
 
 ## Contrato
 
@@ -15,12 +15,12 @@ Consolidar el canon y las reglas existentes, documentar un primer uso manual del
 | R5 | El README explica propósito, estado, ciclo manual, incorporación local de una revisión exacta y comienzo de una spec. Distingue lo disponible de instalador, adapters y automatizaciones futuras. |
 | R6 | Una decisión arquitectónica previa a la implementación define copia local versionada, propiedad de `.ai/`, `PROJECT.md` y `specs/`, colisiones y actualizaciones futuras. La incorporación nunca sobrescribe `.ai/` o `PROJECT.md` existentes. |
 | R7 | La incorporación manual se ensaya en repositorios temporales vacío y existente. Se comprueba uso del canon sin consultar el origen, identificación de la revisión copiada, preservación de archivos y detección de colisiones. |
-| R8 | Cada requisito tiene evidencia en Verification. Ship se cierra solo después de commits coherentes en la rama local `docs/readme-manual-sdd`, con referencia al commit entregado y handoff final. |
+| R8 | `verification.md` registra método, resultado y evidencia de R1–R7, además de la comprobación de enlaces y `git diff --check`. Los fallos y límites se hacen visibles. |
 
 ## Límites
 
-No se implementan instalador, CLI, adapters, gates automáticos ni actualización automática. La entrega es local: no requiere push, PR o integración en `main`. Se preservan los cambios de canon y reglas que ya estaban en el árbol de trabajo al iniciar este cambio.
+No se implementan instalador, CLI, adapters, gates automáticos ni actualización automática. La entrega es local: requiere commits coherentes en `docs/readme-manual-sdd`, referencia al commit entregado y handoff final; no requiere push, PR o integración en `main`. Se preservan los cambios de canon y reglas que ya estaban en el árbol de trabajo al iniciar este cambio.
 
 ## Handoff
 
-Contexto revisado: `AGENTS.md`, `.ai/`, `docs/architecture/` y estado de Git en `main` antes de crear la rama de trabajo. No hay specs numeradas previas. Siguiente paso: documentar enfoque y decisiones en `plan.md`, luego derivar tareas antes de modificar producto.
+Contexto revisado: `AGENTS.md`, `.ai/`, `docs/architecture/` y estado de Git en `main` antes de crear la rama de trabajo. No había specs numeradas previas. Plan y Tasks están completos; Implementation produjo el canon portable y la guía. Siguiente fase: Verification y después Ship local, si se cumple su gate.

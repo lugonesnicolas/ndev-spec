@@ -11,3 +11,5 @@ Estado: Implementation completa; gate de salida cumplido. Tasks y sus dependenci
 ## Handoff
 
 T1–T3 produjeron los cambios de documentación previstos, sin cambiar requisitos ni dejar bloqueos de Implementation. Siguiente fase: Verification. Ensayar numeración y adopción, guardar evidencia por criterio en `verification.md` y corregir cualquier desviación antes de Ship.
+
+Revalidación: la precisión de R8 separa el criterio de Verification del cierre posterior de Ship; no agrega trabajo de Implementation. T1–T3 siguen completas y su gate de salida se mantiene cumplido.
