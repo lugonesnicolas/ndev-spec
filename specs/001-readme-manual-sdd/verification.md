@@ -1,6 +1,6 @@
 # Verification — 001-readme-manual-sdd
 
-Estado: Verification completa; gate de salida cumplido. Ship pendiente.
+Estado: Verification completa y Ship cerrado; ambos gates de salida cumplidos.
 
 Revisión del core ensayada: `1ac3d281748463e03647fff1c76537e25c42fbe5` en `docs/readme-manual-sdd`. Se extrajo `.ai/` desde ese commit con `git archive`; los repositorios de ensayo fueron temporales y se eliminaron después.
 
@@ -19,8 +19,10 @@ El primer intento del ensayo de numeración falló por un formato numérico del 
 
 ## Handoff de Verification
 
-No quedan desviaciones materiales ni bloqueos para Ship. Siguiente paso: confirmar el commit local de evidencia, registrar su referencia en la sección Ship y cerrar el handoff conforme a `PROJECT.md`.
+No quedaron desviaciones materiales ni bloqueos para Ship. El commit de evidencia se confirmó y la entrega local se registra a continuación.
 
 ## Ship
 
-Estado: pendiente del gate de Verification y de confirmar el commit de entrega. El resultado, la referencia y el handoff final se registrarán aquí después de esa confirmación.
+Estado: completo. La rama local `docs/readme-manual-sdd` contiene el producto en `1ac3d281748463e03647fff1c76537e25c42fbe5` y la evidencia verificada en `89623a56d183f35786dc0f51d2fa599cc000c525`. Se confirmó este último como HEAD con el árbol de trabajo limpio antes del cierre. Este registro se incorpora mediante un commit documental posterior para evitar una referencia circular. No se publicó la rama, según las condiciones de `PROJECT.md`.
+
+Handoff final: el primer ciclo SDD manual está entregado localmente. La próxima decisión de diseño es el mecanismo de instalación y actualización y un primer adapter, usando estos ensayos de incorporación como punto de partida. No quedan pendientes de este contrato.

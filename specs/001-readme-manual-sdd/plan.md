@@ -18,6 +18,6 @@ Verification solo se cierra si todos los criterios tienen evidencia; Ship requie
 
 ## Handoff
 
-Specification vigente en `spec.md`; decisión estructural en `docs/architecture/adoption.md`. No hay decisiones materiales abiertas. Tasks e Implementation están completas; siguiente fase: Verification, con los ensayos y evidencia indicados arriba.
+Specification vigente en `spec.md`; decisión estructural en `docs/architecture/adoption.md`. Tasks, Implementation y Verification están completas. Ship local se registra en `verification.md`; el siguiente trabajo corresponde a un cambio separado de diseño.
 
 Revalidación durante Verification: R8 se precisó como criterio de evidencia previo a Ship; la condición de entrega permanece en los límites de Specification y en `PROJECT.md`. El enfoque, las tareas de Implementation y su gate siguen cubriendo el contrato vigente.

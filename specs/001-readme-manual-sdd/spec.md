@@ -23,4 +23,4 @@ No se implementan instalador, CLI, adapters, gates automáticos ni actualizació
 
 ## Handoff
 
-Contexto revisado: `AGENTS.md`, `.ai/`, `docs/architecture/` y estado de Git en `main` antes de crear la rama de trabajo. No había specs numeradas previas. Plan y Tasks están completos; Implementation produjo el canon portable y la guía. Siguiente fase: Verification y después Ship local, si se cumple su gate.
+Contexto revisado: `AGENTS.md`, `.ai/`, `docs/architecture/` y estado de Git en `main` antes de crear la rama de trabajo. No había specs numeradas previas. Plan, Tasks, Implementation y Verification están completos; Ship local se confirma en `verification.md`. Siguiente trabajo: diseñar instalación, actualización y el primer adapter como cambio separado.
