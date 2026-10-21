@@ -1,21 +1,22 @@
 # Verification — 003-sdd-workflow-skills
 
-Estado: Verification satisfactoria; Ship completo (PR abierto, sin mergear).
+Estado: Verification satisfactoria tras repetirla por la observación de E4; Ship pendiente de actualizar el cierre en el PR #3.
 
-Revisión verificada: `9f6fea8` (producto en `b557a9a`; T4 solo actualizó `tasks.md`). Los ensayos se hicieron en repositorios temporales fuera de este repositorio, con el `.ai/` de `b557a9a`; sus auxiliares (`measure.py`, `links.py` y los repos de prueba) no forman parte del producto.
+Revisión verificada: `b4db092` (producto en `b557a9a` más el paso de cierre de `ship` en `b4db092`). La verificación original fue sobre `9f6fea8`. Los ensayos se hicieron en repositorios temporales fuera de este repositorio, con el `.ai/` de `b557a9a`; sus auxiliares (`measure.py`, `links.py` y los repos de prueba) no forman parte del producto.
 
 ## Ensayos
 
 | ID | Ensayo | Resultado |
 | --- | --- | --- |
-| E1 | Medición con `max(caracteres/4, palabras×1,5)` | Por skill: entre 238 (`tasks`) y 520 (`constitution`) tokens, todas ≤ 700. Contexto fijo por etapa: entre 434 (`tasks`) y 1.611 (`specify`), todos ≤ 2.500. Referencia: leer el canon completo sin skills cuesta 4.689 tokens por etapa. |
+| E1 | Medición con `max(caracteres/4, palabras×1,5)` | Por skill: entre 238 (`tasks`) y 520 (`constitution`) tokens, todas ≤ 700; `ship` pasó de 337 a 382 tokens (contexto fijo de 836 a 880) con el paso de cierre. Contexto fijo por etapa: entre 434 (`tasks`) y 1.611 (`specify`), todos ≤ 2.500. Referencia: leer el canon completo sin skills cuesta 4.689 tokens por etapa. |
 | E2 | Formato y neutralidad | 9 carpetas con `SKILL.md`; frontmatter `name` igual a la carpeta y `description` no vacía; 5/5 secciones en cada una. Búsqueda de nombres de proveedores, modelos y herramientas en `.ai/`: sin coincidencias. Ningún enlace de `.ai/` sale de `.ai/`. |
 | E3 | Caso mínimo (a): corregir un mensaje de error en un proyecto Python | Un único `spec.md`, de 248 palabras (≤ 500), con Contrato + Aclaraciones, Plan, Tareas + Análisis, Verificación y Cierre. `python -m unittest`: 2 pruebas OK. Cierre en un commit posterior que referencia el commit entregado, sin autorreferencia. |
-| E4 | Caso extendido (b): exportación JSON que cambia la interfaz pública `report.export` | Cuatro archivos y la decisión `0001` (767 palabras en total). `clarify` registró 4 aclaraciones, una de ellas sobre un cambio de comportamiento existente. `analyze` detectó el hueco sembrado (R3 sin tarea) y otro no sembrado (el criterio de T1 no probaba R2); ambos se corrigieron y se repitió el gate de Tasks. `verify`, ejecución 1: un defecto inyectado después de Implementation hizo fallar `test_csv` (R4). Se volvió a `implement` y en la ejecución 2 pasaron las 5 pruebas y el comando de R2. Observación: el primer cierre no actualizó el estado de cabecera de `spec.md` y `plan.md`, como pide `ship`; al revisar el gate se corrigió en un commit adicional. |
+| E4 | Caso extendido (b): exportación JSON que cambia la interfaz pública `report.export` | Cuatro archivos y la decisión `0001` (767 palabras en total). `clarify` registró 4 aclaraciones, una de ellas sobre un cambio de comportamiento existente. `analyze` detectó el hueco sembrado (R3 sin tarea) y otro no sembrado (el criterio de T1 no probaba R2); ambos se corrigieron y se repitió el gate de Tasks. `verify`, ejecución 1: un defecto inyectado después de Implementation hizo fallar `test_csv` (R4). Se volvió a `implement` y en la ejecución 2 pasaron las 5 pruebas y el comando de R2. Observación: el primer cierre no actualizó el estado de cabecera de `spec.md` y `plan.md`, como pide `ship`; al revisar el gate se corrigió en un commit adicional, que tampoco actualizó `tasks.md`. Causa: `ship` lo pedía en `Produce` pero no en `Pasos`. Resuelta en `b4db092` y comprobada en E9. |
 | E5 | Escalado: opción `--quiet` | Clasificado como mínimo; durante Plan aparecieron dos componentes, así que se reclasificó a estándar antes del gate de Plan. Se registró el motivo, se trasladaron Plan, Tareas y Análisis a `plan.md`, se creó `verification.md` y se repitió el gate de Specification. 4 pruebas OK. |
 | E6 | `constitution` | Proyecto nuevo: `PROJECT.md` con propósito, restricciones, comprobaciones inexistentes declaradas y entrega; `.ai/` sin cambios. Proyecto existente (Node, con AGENTS y procedencia): el relevamiento leyó solo README, AGENTS, `package.json` y la estructura, y ejecutó `npm test`. Registró hechos con su fuente y dos supuestos marcados (ESM sin `"type": "module"` bajo Node 20; comando de publicación). La sección `## ndev-spec` quedó byte a byte idéntica; `.ai/`, AGENTS, `src/`, `test/`, `package.json` y README sin cambios. |
 | E7 | Preservación y coherencia | `git diff main` sobre `specs/001-*`, `specs/002-*`, `installation-updates.md`, `adoption.md`, `canon.md` y `.ai/rules/`: vacío. Revisión normativa: los seis gates se conservan; el workflow agrega las condiciones de `clarify` y `analyze` y la regla de registro por nivel; README, `.ai/README.md`, `sdd.md` y PROJECT remiten a ellas sin redefinirlas. |
-| E8 | Enlaces y formato | 103 enlaces locales y anclas revisados, sin errores. `git diff --check` sin hallazgos. Árbol limpio antes del commit de Verification. |
+| E8 | Enlaces y formato | 103 enlaces locales y anclas revisados, sin errores. `git diff --check` sin hallazgos. Árbol limpio antes del commit de Verification. Repetido tras `b4db092`: 102 enlaces (se retiró uno del handoff), sin errores; `git diff --check` limpio. |
+| E9 | Repetición de Ship de E4 con `ship` de `b4db092` | Copia de `ext` desde `0287747` (antes del cierre), con la skill actualizada. Un único commit de cierre registró la referencia al commit verificado y dejó en estado final las cabeceras de los cuatro artefactos (`spec`, `plan`, `tasks` y `verification`), comprobadas antes del gate. No hizo falta un commit correctivo. |
 
 ## Requisitos
 
@@ -30,7 +31,7 @@ Revisión verificada: `9f6fea8` (producto en `b557a9a`; T4 solo actualizó `task
 | R7 | E6; E7 (instalación y 001/002 sin cambios). | Satisfactorio |
 | R8 | E7; la tabla de cuatro archivos se declara como nivel extendido en el workflow y en `sdd.md`. En los cinco repositorios de ensayo, el `.ai/` distribuido coincide con los 21 blobs de `b557a9a` (ver límites). | Satisfactorio |
 | R9 | PROJECT en Stage 4 con la entrega de 003; README, `.ai/README.md` y `sdd.md` actualizados; `.gitkeep` retirado. | Satisfactorio |
-| R10 | E1–E8 en este archivo. | Satisfactorio |
+| R10 | E1–E9 en este archivo. | Satisfactorio |
 
 ## Desviaciones y límites
 
@@ -40,7 +41,7 @@ Revisión verificada: `9f6fea8` (producto en `b557a9a`; T4 solo actualizó `task
 
 ## Handoff
 
-Contrato, Plan y Tasks no cambiaron durante Verification. Siguiente paso: Ship según la [spec](spec.md#alcance-y-entrega): push de `docs/sdd-workflow-skills` y PR contra `main` en español, sin merge sin confirmación explícita.
+El contrato y el Plan no cambiaron. La observación de E4 reabrió T2: se agregó el paso de cierre a `ship`, por decisión del usuario, en lugar de ampliar `analyze`, que corre antes de Implementation. E1, E8 y E9 se repitieron con resultado satisfactorio. Siguiente paso: actualizar el PR #3 y el cierre.
 
 ## Cierre
 
