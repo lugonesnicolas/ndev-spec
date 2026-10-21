@@ -1,6 +1,6 @@
 # Plan — 004
 
-Estado: Plan cumplido; Implementation completa, evidencia en revisión final antes de Ship. Contrato vigente: [spec.md](spec.md).
+Estado: entregado; Plan y gates posteriores cumplidos. PR #4 abierto para revisión, sin merge. Contrato vigente: [spec.md](spec.md).
 
 ## Enfoque
 
@@ -29,4 +29,4 @@ No hay build ni suite de producto. Git y PowerShell disponibles; Git Bash dispon
 
 ## Entrega y handoff
 
-Push y PR contra main tras Verification satisfactoria; sin merge/tag/release. Cierre documental posterior referencia el commit verificado, nunca el commit que lo contiene. Gate de Plan cumplido: requisitos cubiertos por E1–E7 y decisión persistida, sin decisiones materiales abiertas. Tasks y analyze se completaron antes de implementar; los ensayos están registrados. Siguiente paso actual: concluir revisión final y efectuar Ship.
+Entrega completada: docs/v1-manual-readiness publicada y PR #4 contra main con descripción en español, desde la revisión verificada 581c113; cierre posterior en verification.md, sin autorreferencia. Sin merge/tag/release. Gate de Plan cumplido: requisitos cubiertos por E1–E7 y decisión persistida, sin decisiones materiales abiertas. Tasks y analyze precedieron la implementación; ensayos y revisiones independientes registrados. Siguiente paso: revisión del PR por el responsable; 004 no tiene tareas pendientes.

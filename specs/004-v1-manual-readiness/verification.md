@@ -1,6 +1,6 @@
 # Verification — 004
 
-Estado: Verification satisfactoria; Ship pendiente. Implementation completa en `58f9d76`; producto documental y canon ensayados desde `63f3a380facb4a09259314f437c9d6fa9c294d13`.
+Estado: entregado; Verification satisfactoria y Ship completo, PR #4 abierto para revisión, sin merge. Implementation completa en `58f9d76`; producto documental y canon ensayados desde `63f3a380facb4a09259314f437c9d6fa9c294d13`; revisión verificada entregada `581c113f792e4cac77852508a9934ed16aa306f5`.
 
 ## Resultado y alcance comprobado
 
@@ -91,7 +91,7 @@ La guía incluye los nueve prompts, tres niveles, puntos de parada, preguntas, e
 | R5 | Nueve prompts y ejemplos revisados; E5 prueba ubicación de artefactos, continuidad, cobertura y retorno por fallo. | Satisfactorio |
 | R6 | E6/E7; diff de preservación vacío y nota histórica contrastada con Git. | Satisfactorio |
 | R7 | E1–E7, métodos, resultados y limitaciones persistidos aquí. | Satisfactorio |
-| R8 — condiciones de entrega | Rama y mecanismo coinciden con Specification/PROJECT. La ejecución y referencias se confirman en Cierre, después de Verification. | Preparación conforme; ejecución corresponde a Ship |
+| R8 — entrega | Rama publicada y PR #4 abierto contra main después de Verification; referencias y confirmación en Cierre. | Satisfactorio; Ship completo |
 
 ## Limitaciones
 
@@ -111,8 +111,10 @@ Aplicada la skill sdd-review como complemento del canon local, sin crear fuentes
 
 ## Handoff
 
-Gates de Specification, Plan, Tasks, Implementation y Verification cumplidos para el producto. Contrato y enfoque vigentes, sin bloqueos de v1 manual. Siguiente paso: commit de evidencia, push y PR en español contra main; registrar entrega confirmada y comprobar estados finales. No mergear ni publicar release.
+Gates de Specification, Plan, Tasks, Implementation, Verification y Ship cumplidos. Contrato y enfoque vigentes, sin bloqueos ni tareas de 004. Siguiente paso: revisión del PR #4 por el responsable; un merge requiere confirmación explícita y no forma parte de la entrega. No hay tag ni release publicada.
 
 ## Cierre
 
-Pendiente de ejecutar Ship; no hay entrega externa declarada todavía.
+Entrega confirmada: rama `docs/v1-manual-readiness` publicada en origin con `581c113f792e4cac77852508a9934ed16aa306f5` (evidencia de Verification y revisiones independientes), y [PR #4](https://github.com/lugonesnicolas/ndev-spec/pull/4) abierto contra `main`, con título y descripción en español. El conector confirmó estado open, draft=false, merged=false, base main en 9789384 y head en 581c113. El producto y canon son los ensayados de 63f3a38; los commits posteriores solo actualizan los registros de 004.
+
+Este cierre se incorpora en un commit documental posterior al entregado y se publica en el mismo PR. Se comprobaron las cabeceras y handoffs de los cuatro artefactos: todos reflejan entrega completa, sin tareas pendientes y con la misma referencia verificada. Enlaces locales/anclas: 127, sin errores; diff --check satisfactorio. No se ejecutó merge, tag ni release. La revisión/decisión de integración queda al responsable y es compatible con Ship completo según el contrato.
