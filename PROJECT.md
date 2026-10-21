@@ -2,9 +2,9 @@
 
 ## Propósito y estado
 
-ndev-spec desarrolla un harness portable para Specification-Driven Development asistido por agentes. Etapa actual: **Stage 3 — Rules**. El canon compartido reside en [`.ai/`](.ai/README.md); este repositorio es su origen. La revisión entregada de cada cambio se registra en su `verification.md`, para evitar que este contrato apunte al commit que lo contiene.
+ndev-spec desarrolla un harness portable para Specification-Driven Development asistido por agentes. Etapa actual: **Stage 4 — Workflow skills**. El canon compartido reside en [`.ai/`](.ai/README.md); este repositorio es su origen. La revisión entregada de cada cambio se registra en su `verification.md`, para evitar que este contrato apunte al commit que lo contiene.
 
-Las reglas metodológicas ya están escritas. Comandos, skills, personas/agentes, adapters y gates automáticos aún no están definidos. La [instalación y actualización manual](docs/architecture/installation-updates.md) tiene un diseño documentado; las plantillas, el instalador y la automatización de actualizaciones siguen pendientes.
+Las reglas metodológicas, las [skills](.ai/skills/README.md) por etapa y los niveles de cambio ya están escritos. Comandos, personas/agentes, adapters, plantillas y gates automáticos aún no están definidos. La [instalación y actualización manual](docs/architecture/installation-updates.md) tiene un diseño documentado; las plantillas, el instalador y la automatización de actualizaciones siguen pendientes.
 
 ## Contexto técnico y restricciones
 
@@ -21,3 +21,5 @@ Para `001-readme-manual-sdd`, Ship significa commits coherentes en la rama local
 Para `002-install-update-design`, Ship entrega únicamente diseño documental y evidencia de ensayos manuales mediante commits locales en `docs/install-update-design`, desde `de238169dd7eda60404de40523e6440497356dce`, después de Verification satisfactoria. Se preservan `docs/readme-manual-sdd` y `main`; no requiere push, PR ni integración. El commit entregado y el handoff se registran en `specs/002-install-update-design/verification.md` mediante cierre posterior. Un instalador futuro requiere otra spec y sus gates; este diseño no implica que exista ni que haya sido probado.
 
 Las entregas locales de 001 y 002 se integraron después en `main` mediante el PR #1 y sus ramas ya no existen; el registro está en la sección [Integración](specs/002-install-update-design/verification.md#integración) de 002. Las condiciones anteriores describen cada entrega original.
+
+Para `003-sdd-workflow-skills`, Ship significa commits coherentes en `docs/sdd-workflow-skills`, creada desde `main` en `43875b9`; después de Verification satisfactoria, push y PR contra `main` con descripción en español. No se mergea sin confirmación explícita del usuario. La rama, el commit entregado y el PR se registran en `specs/003-sdd-workflow-skills/verification.md`.
