@@ -1,13 +1,13 @@
 # Tasks — 004
 
-Estado: Tasks cumplida; Implementation en curso (T1–T3 completas, T4 en curso). Specification y Plan vigentes.
+Estado: Implementation completa (T1–T4); pendiente Verification formal y Ship. Specification, Plan, Tasks y análisis vigentes.
 
 | ID | Trabajo y requisitos | Dependencias | Criterio de finalización | Estado |
 | --- | --- | --- | --- | --- |
 | T1 | Auditar ciclo y corregir canon/preguntas (R1–R3) | Specification, Plan, decisión y análisis | Matriz de fases/skills; hallazgos resueltos; protocolo neutral enlazado y lecturas coherentes. | Completa: matriz y H1–H3 resueltos abajo; medición preliminar ≤539 tokens/skill y ≤1.960 de contexto. |
 | T2 | Guía operativa y ejemplos (R4, R5) | T1 | Instalación nueva/existente, actualización, recuperación, nueve prompts y tres niveles, conforme a 002. | Completa: docs/guide.md, con bloques P1–P8/B1–B8 y límites de copia/actualización. |
 | T3 | Alinear entradas y estado histórico (R6) | T1, T2 | README breve, índices y PROJECT vigentes; nota de integración 003; 001/002 y diseño de instalación preservados. | Completa: README, índices, PROJECT y nota de integración; diff de preservación vacío. |
-| T4 | Preparar y ejecutar ensayos E1–E7 (R1–R7) | T1–T3 | Evidencia por criterio, límites explícitos y ningún bloqueo de preparación v1; enlaces/presupuestos/diff correctos. | En curso: auxiliares temporales y comprobaciones estáticas preparados. |
+| T4 | Preparar y ejecutar ensayos E1–E7 (R1–R7) | T1–T3 | Evidencia por criterio, límites explícitos y ningún bloqueo de preparación v1; enlaces/presupuestos/diff correctos. | Completa: instalaciones P/B nuevas/existentes; actualización/no-op/colisión/recuperación; tres niveles y fallos; estática satisfactoria. Evidencia en verification.md. |
 | T5 | Entregar PR y registrar cierre (R8) | T4 y gate de Verification | Rama publicada, PR en español, referencia verificada y estados coherentes; sin merge ni release. | Pendiente |
 
 T5 es trabajo de Ship: no se ejecuta ni condiciona la salida de Implementation antes de Verification. T1–T4 son las unidades de implementación y preparación de evidencia.
@@ -28,7 +28,7 @@ Cobertura: R1→T1/T4→E1/E5; R2→T1/T4→E2; R3→T1/T4→E1/E5/E6; R4→T2/T
 
 ## Handoff
 
-Gates de Specification, Plan y Tasks cumplidos. Análisis sin bloqueos. T1–T3 completas; continuar ensayos de T4 y registrar evidencia antes de cerrar Implementation. Los hallazgos son trabajo contratado, no requisitos nuevos; no declarar preparación v1 antes de Verification.
+Gates de Specification, Plan, Tasks e Implementation cumplidos para T1–T4. Análisis sin bloqueos; ensayos concluidos y evidencia disponible para Verification. T5 es la entrega posterior, no una tarea de producto pendiente. Contrato y enfoque no cambiaron. Siguiente paso: contrastar todos los criterios con la evidencia y, si pasan, efectuar Ship.
 
 ## Resultado de auditoría por fase
 
