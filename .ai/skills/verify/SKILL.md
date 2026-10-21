@@ -7,6 +7,7 @@ description: Etapa de test y validación que cierra la implementación contrasta
 
 ## Lee
 
+- [Preguntas y aclaraciones](../../workflow.md#preguntas-y-aclaraciones).
 - Workflow: [5. Verification](../../workflow.md#5-verification). Regla de [Testing](../../rules/testing.md).
 - Contrato, estrategia de verificación del Plan, registro Tareas y comprobaciones de `PROJECT.md`.
 
@@ -17,7 +18,7 @@ Registro Verificación (sección de `spec.md` en el nivel mínimo, `verification
 ## Pasos
 
 1. Confirmar el gate de entrada.
-2. Ejecutar la suite y las comprobaciones de `PROJECT.md`. Registrar el comando y un resultado resumido.
+2. Ejecutar las comprobaciones aplicables de `PROJECT.md`, incluida la suite si existe. Registrar comandos y resultados resumidos; declarar las comprobaciones inexistentes o no ejecutadas y sus límites, sin presentarlas como exitosas.
 3. Aplicar a cada requisito el método planificado y registrar la evidencia o su referencia.
 4. Comprobar regresiones del comportamiento que debía preservarse.
 5. Ante un fallo: registrar la evidencia, volver a `implement` o a la fase que lo originó, corregir y repetir la verificación afectada.

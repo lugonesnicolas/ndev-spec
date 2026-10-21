@@ -7,6 +7,7 @@ description: Definir cómo satisfacer el contrato y cómo se verificará cada cr
 
 ## Lee
 
+- [Preguntas y aclaraciones](../../workflow.md#preguntas-y-aclaraciones).
 - Workflow: [2. Plan](../../workflow.md#2-plan) y la tabla de registros de [Niveles de cambio](../../workflow.md#niveles-de-cambio). Regla de [Arquitectura](../../rules/architecture.md).
 - El Contrato, el contexto técnico de `PROJECT.md`, la documentación arquitectónica relacionada y solo el código que el enfoque toca.
 

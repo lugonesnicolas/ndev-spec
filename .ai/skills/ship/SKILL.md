@@ -7,6 +7,7 @@ description: Entregar el cambio verificado según las condiciones del proyecto y
 
 ## Lee
 
+- [Preguntas y aclaraciones](../../workflow.md#preguntas-y-aclaraciones).
 - Workflow: [6. Ship](../../workflow.md#6-ship). [Trabajo con Git](../../rules/git-workflow.md) si el proyecto usa Git.
 - Condiciones de entrega de `PROJECT.md` o del contrato, y el resultado de Verificación.
 

@@ -22,6 +22,8 @@ Actualmente `rules/` contiene las reglas metodológicas y `skills/` las skills q
 
 Las reglas complementan el [workflow SDD](workflow.md), que define las fases, gates y handoffs; no los redefinen. Su aplicación respeta la jerarquía de fuentes de verdad del canon.
 
+El protocolo de [preguntas y aclaraciones](workflow.md#preguntas-y-aclaraciones) rige todo el ciclo: consultar hechos primero, preguntar decisiones materiales y persistir sus respuestas antes de continuar el trabajo afectado.
+
 ## Jerarquía de fuentes de verdad
 
 Las fuentes se aplican en este orden, de mayor a menor prioridad:

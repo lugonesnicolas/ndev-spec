@@ -7,6 +7,7 @@ description: Redactar o actualizar el contexto del proyecto en PROJECT.md, para 
 
 ## Lee
 
+- [Preguntas y aclaraciones](../../workflow.md#preguntas-y-aclaraciones).
 - [Jerarquía de fuentes](../../README.md#jerarquía-de-fuentes-de-verdad) y [Canon y contexto del proyecto](../../README.md#canon-y-contexto-del-proyecto).
 - `PROJECT.md` si existe y las instrucciones de agentes del repositorio.
 - Proyecto existente: solo lo necesario para relevarlo (README, manifiestos de dependencias, configuración de build, test y CI, estructura de primer nivel). No recorrer todo el código.

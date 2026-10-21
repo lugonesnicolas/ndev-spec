@@ -8,6 +8,7 @@ description: Detectar y resolver las ambigüedades materiales del contrato antes
 ## Lee
 
 - Workflow: [1. Specification](../../workflow.md#1-specification).
+- [Preguntas y aclaraciones](../../workflow.md#preguntas-y-aclaraciones).
 - El registro Contrato del cambio. Leer código solo para confirmar un hecho concreto.
 
 ## Produce
@@ -18,7 +19,7 @@ Subsección `Aclaraciones` del Contrato con pregunta, respuesta, quién la resol
 
 1. Revisar cada requisito: si su criterio permite decidir pasa o no pasa; si hay términos sin definir, umbrales, casos límite, errores, permisos, datos o compatibilidad sin especificar; si el alcance se contradice.
 2. Considerar material una ambigüedad cuando dos interpretaciones razonables llevarían a implementaciones o pruebas distintas. Descartar el resto.
-3. Preguntar al responsable las ambigüedades materiales, hasta cinco por ronda, cada una con opciones y una recomendación.
+3. Confirmar primero los hechos descubribles. Preguntar al responsable las ambigüedades materiales con el protocolo transversal, hasta cinco por ronda y dentro del límite de la herramienta; usar opciones y recomendación cuando corresponda.
 4. Registrar las respuestas y ajustar requisitos y criterios. Si cambia el nivel, aplicar el escalado.
 5. Una respuesta pendiente se registra como bloqueo: el gate no se cumple.
 
