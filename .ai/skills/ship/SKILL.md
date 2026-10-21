@@ -20,7 +20,7 @@ Registro Cierre (sección de `spec.md` en el nivel mínimo, sección de cierre d
 2. Si las condiciones de entrega no están definidas o falta una decisión material, detenerse y preguntar.
 3. Ejecutar la entrega definida. Las acciones externas o irreversibles, como push, PR, merge, release o despliegue, requieren la confirmación que exijan el proyecto o el responsable.
 4. Confirmar el resultado y registrar referencias: commit, PR, release o equivalente.
-5. Registrar el cierre sin autorreferenciar el commit que lo contiene.
+5. Registrar el cierre sin autorreferenciar el commit que lo contiene, actualizar el estado final en la cabecera de cada artefacto del cambio y comprobar, antes de declarar el gate, que cabeceras, handoff final y referencias son coherentes entre sí.
 
 ## Gate
 
