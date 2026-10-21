@@ -1,6 +1,6 @@
 # 004 — Auditoría y cierre de la v1 manual
 
-Estado: Specification cumplida; pendiente Plan. Nivel: extendido, porque modifica el canon y requiere una decisión arquitectónica.
+Estado: Specification cumplida; Plan y Tasks preparados. Nivel: extendido, porque modifica el canon y requiere una decisión arquitectónica.
 
 ## Contrato
 
