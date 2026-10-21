@@ -1,6 +1,6 @@
 # Plan — 004
 
-Estado: Plan cumplido; pendiente Tasks. Contrato vigente: [spec.md](spec.md).
+Estado: Plan cumplido; Implementation completa, evidencia en revisión final antes de Ship. Contrato vigente: [spec.md](spec.md).
 
 ## Enfoque
 
@@ -29,4 +29,4 @@ No hay build ni suite de producto. Git y PowerShell disponibles; Git Bash dispon
 
 ## Entrega y handoff
 
-Push y PR contra main tras Verification satisfactoria; sin merge/tag/release. Cierre documental posterior referencia el commit verificado, nunca el commit que lo contiene. Gate de Plan cumplido: requisitos cubiertos por E1–E7 y decisión persistida, sin decisiones materiales abiertas. Siguiente paso: Tasks y analyze.
+Push y PR contra main tras Verification satisfactoria; sin merge/tag/release. Cierre documental posterior referencia el commit verificado, nunca el commit que lo contiene. Gate de Plan cumplido: requisitos cubiertos por E1–E7 y decisión persistida, sin decisiones materiales abiertas. Tasks y analyze se completaron antes de implementar; los ensayos están registrados. Siguiente paso actual: concluir revisión final y efectuar Ship.

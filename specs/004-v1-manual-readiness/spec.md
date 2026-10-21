@@ -1,6 +1,6 @@
 # 004 — Auditoría y cierre de la v1 manual
 
-Estado: Specification cumplida; Plan y Tasks preparados. Nivel: extendido, porque modifica el canon y requiere una decisión arquitectónica.
+Estado: Specification, Plan, Tasks e Implementation cumplidos; evidencia de Verification disponible, en revisión final antes de Ship. Nivel: extendido, porque modifica el canon y requiere una decisión arquitectónica.
 
 ## Contrato
 
@@ -36,4 +36,4 @@ Sin ambigüedades materiales pendientes tras revisar alcance, herramientas de pr
 
 ## Handoff
 
-Gate de entrada y salida de Specification cumplidos. Siguiente paso: Plan y decisión arquitectónica antes de tocar producto; luego Tasks y analyze. El árbol inicial estaba limpio, en main, con PR #3 integrado en 9789384.
+Gates de Specification cumplidos, sin cambios de contrato desde su aprobación. Plan, decisión y Tasks precedieron la implementación; los ensayos y evidencia están en verification.md. Siguiente paso actual: concluir revisión final y efectuar Ship si no quedan hallazgos. El árbol inicial estaba limpio, en main, con PR #3 integrado en 9789384.

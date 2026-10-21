@@ -1,6 +1,6 @@
 # Tasks — 004
 
-Estado: Implementation completa (T1–T4); pendiente Verification formal y Ship. Specification, Plan, Tasks y análisis vigentes.
+Estado: Implementation completa (T1–T4), Verification satisfactoria; revisión final y Ship pendientes. Specification, Plan, Tasks y análisis vigentes.
 
 | ID | Trabajo y requisitos | Dependencias | Criterio de finalización | Estado |
 | --- | --- | --- | --- | --- |
@@ -28,7 +28,7 @@ Cobertura: R1→T1/T4→E1/E5; R2→T1/T4→E2; R3→T1/T4→E1/E5/E6; R4→T2/T
 
 ## Handoff
 
-Gates de Specification, Plan, Tasks e Implementation cumplidos para T1–T4. Análisis sin bloqueos; ensayos concluidos y evidencia disponible para Verification. T5 es la entrega posterior, no una tarea de producto pendiente. Contrato y enfoque no cambiaron. Siguiente paso: contrastar todos los criterios con la evidencia y, si pasan, efectuar Ship.
+Gates de Specification, Plan, Tasks, Implementation y Verification cumplidos para T1–T4. Análisis sin bloqueos; evidencia en verification.md. T5 es la entrega posterior, no una tarea de producto pendiente. Contrato y enfoque no cambiaron. Siguiente paso: concluir revisión final y efectuar Ship si no quedan hallazgos.
 
 ## Resultado de auditoría por fase
 
