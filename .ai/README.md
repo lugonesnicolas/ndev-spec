@@ -10,7 +10,7 @@ Las carpetas existentes tienen estos propósitos:
 - `agents/`: responsabilidades de agentes.
 - `templates/`: plantillas de artefactos.
 
-Actualmente `rules/` contiene las reglas metodológicas. `commands/`, `skills/`, `agents/` y `templates/` conservan únicamente sus placeholders; sus definiciones siguen pendientes.
+Actualmente `rules/` contiene las reglas metodológicas y `skills/` las skills que operan cada etapa del workflow, con su [índice y mapeo](skills/README.md). `commands/`, `agents/` y `templates/` conservan únicamente sus placeholders; sus definiciones siguen pendientes.
 
 ## Índice de reglas
 

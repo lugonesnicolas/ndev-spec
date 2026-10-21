@@ -18,7 +18,7 @@ El ciclo base es `Specification → Plan → Tasks → Implementation → Verifi
 
 La convención es `specs/<número>-<nombre-kebab-case>/`, por ejemplo `specs/001-readme-manual-sdd/`. La secuencia se lleva por repositorio: comienza en `001`, usa al menos tres dígitos y continúa `999`, `1000` sin límite fijo. Para crear un cambio, se toma el mayor número de los directorios de cambio existentes y se suma uno; se ignoran placeholders y no se rellenan huecos. Los cambios cancelados conservan su directorio y estado, y sus números no se reutilizan. Si dos ramas crean el mismo número, antes de integrar se renumera el cambio entrante y se actualizan sus referencias. El identificador no determina prioridad, dependencias ni nombre de rama; no requiere contador o comando.
 
-Cada artefacto se crea al trabajar su fase y se actualiza cuando corresponde:
+Cada artefacto se crea al trabajar su fase y se actualiza cuando corresponde. Los archivos que existen dependen del [nivel del cambio](#niveles-de-cambio); en el nivel extendido son:
 
 | Archivo | Contenido persistido |
 | --- | --- |
@@ -29,13 +29,39 @@ Cada artefacto se crea al trabajar su fase y se actualiza cuando corresponde:
 
 El contenido DEBE ser suficiente para evaluar los gates y continuar el trabajo. Su profundidad se adapta al cambio; no se impone una plantilla ni PRD/TRD/QRD como formato obligatorio. El estado y handoff de cada fase se registran de forma breve en su artefacto. No se exige una herramienta para crear o mantener los archivos.
 
+## Niveles de cambio
+
+El nivel decide dónde se registra cada fase; no elimina fases ni gates. Se clasifica al iniciar Specification y se registra con su motivo en la cabecera de `spec.md`.
+
+- **Extendido** si se cumple cualquiera de estas condiciones: requiere una decisión arquitectónica; cambia una interfaz o contrato público, un formato de datos persistido o el canon; afecta límites de confianza o seguridad; incorpora una dependencia; requiere migración.
+- **Mínimo** si se cumplen todas: ninguna condición de extendido; hasta 3 requisitos; hasta 3 tareas; un solo componente o documento; reversible con un único commit.
+- **Estándar**: el resto de los casos.
+
+| Nivel | Archivos | Registro de las fases |
+| --- | --- | --- |
+| Mínimo | `spec.md` | Secciones `Contrato`, `Plan`, `Tareas`, `Verificación` y `Cierre`. |
+| Estándar | `spec.md`, `plan.md`, `verification.md` | Tareas como sección de `plan.md`; Ship en la sección de cierre de `verification.md`. |
+| Extendido | Los cuatro de la tabla anterior y una decisión en la documentación arquitectónica del proyecto | Un archivo por fase; Ship en `verification.md`. |
+
+Cuando una fase indica un archivo como output, en los niveles mínimo y estándar se entiende la sección correspondiente; su gate se evalúa sobre esa sección. Contenido mínimo de cada registro:
+
+| Registro | Contenido mínimo | No contiene |
+| --- | --- | --- |
+| Contrato | Nivel y motivo; requisitos con criterio verificable; alcance y límites; aclaraciones o constancia de que no hacen falta; handoff. | Diseño de la solución ni tareas. |
+| Plan | Enfoque; decisiones o sus referencias; dependencias; cómo se verificará cada criterio; handoff. | Requisitos nuevos ni alternativas fuera de la decisión arquitectónica. |
+| Tareas | Unidades con requisito, dependencias, criterio de finalización y estado; análisis de coherencia y cobertura; handoff. | Pasos triviales ni código. |
+| Verificación | Evidencia o referencia por criterio, método, resultado, desviaciones y límites; handoff. | Salidas completas sin relación con un criterio. |
+| Cierre | Resultado de la entrega, referencia, pendientes y handoff final. | Cambios de producto. |
+
+Ningún registro copia el canon ni transcribe conversaciones. Si en cualquier fase aparece una condición de un nivel superior, se reclasifica, se registra el motivo, se trasladan las secciones a los archivos del nuevo nivel y se repiten los gates afectados. Solo se puede bajar de nivel antes del gate de salida de Plan. Los cambios ya registrados con los cuatro archivos y su decisión son válidos como nivel extendido.
+
 ## 1. Specification
 
 - **Propósito:** establecer el contrato funcional del cambio: qué comportamiento se requiere, su alcance y cómo comprobar su cumplimiento.
 - **Inputs mínimos:** solicitud del cambio y contexto relevante del proyecto, incluidas las restricciones conocidas.
-- **Output persistido:** `spec.md` con requisitos, alcance, límites, criterios verificables y handoff.
+- **Output persistido:** `spec.md` con nivel, requisitos, alcance, límites, criterios verificables, aclaraciones y handoff.
 - **Gate de entrada:** la solicitud y el contexto relevante están disponibles para definir el contrato.
-- **Gate de salida:** el contrato está persistido, sus requisitos tienen criterios verificables y no quedan ambigüedades materiales que impidan planificar o implementar.
+- **Gate de salida:** el contrato está persistido con su nivel, sus requisitos tienen criterios verificables, las ambigüedades materiales detectadas están aclaradas y registradas (o consta que no las hay) y no queda ninguna que impida planificar o implementar.
 - **Qué NO debe hacerse todavía:** implementar cambios de producto, sustituir el contrato por inferencias del agente o imponer PRD/TRD/QRD al core.
 
 ## 2. Plan
@@ -61,7 +87,7 @@ El contenido DEBE ser suficiente para evaluar los gates y continuar el trabajo. 
 - **Propósito:** ejecutar las unidades habilitadas y producir los cambios que satisfacen el contrato.
 - **Inputs mínimos:** `spec.md`, `plan.md` y `tasks.md` vigentes, junto con el estado del producto necesario para ejecutar la tarea.
 - **Output persistido:** cambios de producto y `tasks.md` actualizado con avances, resultados, bloqueos, referencias relevantes y handoff.
-- **Gate de entrada:** los gates anteriores están cumplidos y las dependencias de la tarea que se ejecutará están satisfechas.
+- **Gate de entrada:** los gates anteriores están cumplidos; el análisis de coherencia y cobertura entre contrato, Plan y Tasks está registrado sin inconsistencias materiales abiertas; y las dependencias de la tarea que se ejecutará están satisfechas.
 - **Gate de salida:** todas las tareas previstas están completas según sus criterios, los cambios están disponibles para verificar y no existen bloqueos pendientes que impidan esa verificación. Si hay bloqueos, se registran y el gate permanece sin cumplir.
 - **Qué NO debe hacerse todavía:** declarar cumplido el contrato por haber terminado las tareas, realizar Ship o resolver por cuenta propia decisiones materiales no documentadas.
 
@@ -85,4 +111,4 @@ El contenido DEBE ser suficiente para evaluar los gates y continuar el trabajo. 
 
 ## Límites del core
 
-Este workflow no define comandos, skills, personas/agentes, provider adapters, plantillas, scripts de validación, instalador, GitHub Actions ni gates automáticos. Los mecanismos concretos de Ship dependen del proyecto que usa el harness. La automatización de criterios verificables queda para etapas futuras.
+Las [skills](skills/README.md) operan estas fases sin redefinirlas. Este workflow no define comandos, personas/agentes, provider adapters, plantillas, scripts de validación, instalador, GitHub Actions ni gates automáticos. Los mecanismos concretos de Ship dependen del proyecto que usa el harness. La automatización de criterios verificables queda para etapas futuras.

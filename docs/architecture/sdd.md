@@ -31,7 +31,7 @@ La convención inicial es `specs/<change-id>/`, con estos artefactos:
 | `tasks.md` | Unidades ejecutables, dependencias, criterios de finalización y estado de implementación. |
 | `verification.md` | Evidencias de cumplimiento, resultados, desviaciones y sección de cierre de Ship. |
 
-Implementation actualiza `tasks.md` además de producir los cambios de producto. Ship persiste su resultado en una sección de cierre de `verification.md`; compartir el archivo no fusiona ambas fases ni sus gates. Esta etapa documenta la convención sin crear cambios de ejemplo ni plantillas.
+La [decisión de skills](skills.md) agregó después niveles de cambio: esta tabla corresponde al nivel extendido, y en los niveles mínimo y estándar algunas fases se registran como secciones de otro archivo, sin eliminar gates. Implementation actualiza `tasks.md` además de producir los cambios de producto. Ship persiste su resultado en una sección de cierre de `verification.md`; compartir el archivo no fusiona ambas fases ni sus gates. Esta etapa documenta la convención sin crear cambios de ejemplo ni plantillas.
 
 ## Agent replaceability
 
@@ -47,7 +47,7 @@ Los gates deben apoyarse en criterios verificables y evidencia, para que el avan
 
 ## Decisiones pospuestas y límite de etapa
 
-Al cerrar Stage 2 quedaban pendientes el formato de `change-id`, las plantillas y esquemas detallados de los artefactos, comandos, skills, personas/agentes, provider adapters, automatización de gates y mecanismos concretos de Ship. El identificador se definió posteriormente en [el workflow](../../.ai/workflow.md#artefactos-del-cambio); el mecanismo de Ship para ndev-spec consta en [su contrato local](../../PROJECT.md). Los demás elementos siguen pendientes, al igual que scripts de validación, instalador y GitHub Actions.
+Al cerrar Stage 2 quedaban pendientes el formato de `change-id`, las plantillas y esquemas detallados de los artefactos, comandos, skills, personas/agentes, provider adapters, automatización de gates y mecanismos concretos de Ship. El identificador se definió posteriormente en [el workflow](../../.ai/workflow.md#artefactos-del-cambio); el mecanismo de Ship para ndev-spec consta en [su contrato local](../../PROJECT.md); las skills y la proporcionalidad se definieron en [su decisión](skills.md). Los demás elementos siguen pendientes, al igual que scripts de validación, instalador y GitHub Actions.
 
 El core no prescribe Git, pull requests, releases ni despliegues como mecanismo obligatorio de entrega. Ship utiliza las condiciones conocidas del proyecto; si faltan decisiones materiales sobre la entrega, deben resolverse antes de efectuarla.
 
