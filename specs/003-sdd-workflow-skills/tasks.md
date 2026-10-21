@@ -1,6 +1,6 @@
 # Tasks — 003-sdd-workflow-skills
 
-Estado: Implementation completa tras reabrir T2 por la observación de E4; pendiente de re-verificación. Gates de Specification, Plan y Tasks cumplidos; análisis registrado.
+Estado: Implementation completa tras reabrir T2 por la observación de E4; re-verificada y entregada. Gates de Specification, Plan y Tasks cumplidos; análisis registrado.
 
 | ID | Trabajo y requisitos | Dependencias | Criterio de finalización | Estado |
 | --- | --- | --- | --- | --- |
@@ -17,4 +17,4 @@ Cobertura: R1→T2; R2→T2; R3→T1; R4→T1; R5→T2, T4; R6→T2; R7→T2 (`c
 
 T1–T3 verificadas localmente con medición de tokens, revisión de enlaces (99, sin errores) y `git diff --check`. T4 preparó los ensayos fuera del repositorio; sus auxiliares no forman parte del producto. Siguiente paso: Verification. No hay bloqueos.
 
-Reapertura: en E4, `ship` exigía el estado de cabecera en `Produce` pero no en `Pasos`, y el primer cierre lo omitió. `analyze` no puede detectarlo porque corre antes de Implementation. El usuario eligió agregar el paso dentro de `ship` y tramitarlo en 003; el contrato no cambia. Siguiente paso: repetir el ensayo de Ship (E9) y actualizar Verification.
+Reapertura: en E4, `ship` exigía el estado de cabecera en `Produce` pero no en `Pasos`, y el primer cierre lo omitió. `analyze` no puede detectarlo porque corre antes de Implementation. El usuario eligió agregar el paso dentro de `ship` y tramitarlo en 003; el contrato no cambia. E9 y la re-verificación están completos; el cierre consta en `verification.md`.

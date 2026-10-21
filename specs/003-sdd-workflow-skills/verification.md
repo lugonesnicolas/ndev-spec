@@ -1,6 +1,6 @@
 # Verification — 003-sdd-workflow-skills
 
-Estado: Verification satisfactoria tras repetirla por la observación de E4; Ship pendiente de actualizar el cierre en el PR #3.
+Estado: Verification satisfactoria tras repetirla por la observación de E4; Ship completo (PR #3 abierto, sin mergear).
 
 Revisión verificada: `b4db092` (producto en `b557a9a` más el paso de cierre de `ship` en `b4db092`). La verificación original fue sobre `9f6fea8`. Los ensayos se hicieron en repositorios temporales fuera de este repositorio, con el `.ai/` de `b557a9a`; sus auxiliares (`measure.py`, `links.py` y los repos de prueba) no forman parte del producto.
 
@@ -41,8 +41,10 @@ Revisión verificada: `b4db092` (producto en `b557a9a` más el paso de cierre de
 
 ## Handoff
 
-El contrato y el Plan no cambiaron. La observación de E4 reabrió T2: se agregó el paso de cierre a `ship`, por decisión del usuario, en lugar de ampliar `analyze`, que corre antes de Implementation. E1, E8 y E9 se repitieron con resultado satisfactorio. Siguiente paso: actualizar el PR #3 y el cierre.
+El contrato y el Plan no cambiaron. La observación de E4 reabrió T2: se agregó el paso de cierre a `ship`, por decisión del usuario, en lugar de ampliar `analyze`, que corre antes de Implementation. E1, E8 y E9 se repitieron con resultado satisfactorio. El PR #3 y el cierre están actualizados.
 
 ## Cierre
 
-Entregado según PROJECT: rama `docs/sdd-workflow-skills` publicada en `origin` con el contenido verificado en `2b76cd1`, y [PR #3](https://github.com/lugonesnicolas/ndev-spec/pull/3) contra `main`, con descripción en español. El merge queda pendiente de confirmación explícita del usuario; es compatible con el contrato, que no lo exige. Este registro se agrega en un commit posterior al PR. Handoff final: revisar y, si se aprueba, mergear el PR; no quedan tareas de 003.
+Entregado según PROJECT: rama `docs/sdd-workflow-skills` publicada en `origin` con el contenido verificado en `2b76cd1`, y [PR #3](https://github.com/lugonesnicolas/ndev-spec/pull/3) contra `main`, con descripción en español. El merge queda pendiente de confirmación explícita del usuario; es compatible con el contrato, que no lo exige. Este registro se agrega en un commit posterior al PR.
+
+Actualización: tras la observación de E4, la rama incluye el contenido re-verificado en `493c8e5` (paso de cierre de `ship` en `b4db092`), publicado en el mismo PR y resumido en un comentario. Handoff final: revisar y, si se aprueba, mergear el PR; no quedan tareas de 003.
