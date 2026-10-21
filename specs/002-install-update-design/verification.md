@@ -1,6 +1,6 @@
 # Verification — 002-install-update-design
 
-Estado: Verification completa y Ship cerrado; ambos gates de salida cumplidos.
+Estado: Verification completa y Ship cerrado; ambos gates de salida cumplidos. Integrado en `main` (ver [Integración](#integración)).
 
 ## Método y evidencia
 
@@ -62,3 +62,11 @@ Entrega local completada en `docs/install-update-design`: decisión previa y gat
 Se confirmó que `.ai/` y `specs/001-readme-manual-sdd/` son idénticos a B; las refs `docs/readme-manual-sdd` y `main` conservan sus commits iniciales. No hubo push, PR, integración ni reescritura de historia. Este registro y los handoffs finales se incorporan mediante un commit documental posterior, sin intentar referenciar el commit que los contiene.
 
 Handoff final: diseño y procedimiento manual entregados y verificados. No quedan pendientes del contrato 002. Una implementación futura del instalador o comandos debe abrir la siguiente spec disponible, revalidar las decisiones aplicables y cumplir sus propios gates; estos ensayos no verifican una implementación automatizada. Integrar las ramas existentes en main no fue parte de esta entrega.
+
+## Integración
+
+Posterior a Ship, el 2026-10-21. Las ramas entregadas se publicaron y se integraron en `main` mediante el PR #1, con merge commit (sin squash) `cb1fac45a3111aff92714e2a962aad4730d29b15`; los commits de 001 y 002 y sus hashes citados en estos registros se conservan en el historial de `main`. Antes de borrar las ramas se comprobó que `docs/readme-manual-sdd` estaba contenida en `docs/install-update-design`. Ambas se eliminaron del remoto y del repositorio local; sus cabezas finales, recuperables por hash, eran `de238169dd7eda60404de40523e6440497356dce` y `4aff55718443fbc3d84137fe44ee1f18ee7f9112`.
+
+No se registró una revisión formal del PR; la integración la decidió el autor. Esto no modifica el contrato, los requisitos ni la evidencia de 002, y sus límites siguen vigentes: ensayos en Windows con repositorios locales, sin instalador ni transporte remoto. La entrega local descrita en Ship sigue siendo el registro de lo ocurrido en su momento.
+
+Handoff: el pendiente de integrar las ramas en `main` queda cerrado. No quedan pendientes de 002. La automatización del instalador, si se decide, requiere una nueva spec con el siguiente número disponible.
