@@ -7,6 +7,7 @@ description: Convertir el Plan en unidades ejecutables con cobertura de requisit
 
 ## Lee
 
+- [Preguntas y aclaraciones](../../workflow.md#preguntas-y-aclaraciones).
 - Workflow: [3. Tasks](../../workflow.md#3-tasks).
 - Contrato y Plan del cambio.
 

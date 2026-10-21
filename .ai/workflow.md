@@ -14,6 +14,15 @@ El ciclo base es `Specification → Plan → Tasks → Implementation → Verifi
 - Ante un fallo de Verification, se DEBE persistir la evidencia, regresar a la fase correspondiente para corregirlo y verificar nuevamente. Ship permanece bloqueado mientras no se cumplan los criterios.
 - Los gates de esta etapa son condiciones documentales evaluables; su automatización queda para stages futuros. Ningún gate exige un proveedor, modelo, comando o herramienta específicos.
 
+## Preguntas y aclaraciones
+
+Este protocolo se aplica antes del ciclo y en todas las fases. Una ambigüedad es material si dos interpretaciones razonables cambian el resultado, la implementación o su verificación.
+
+1. Se DEBEN consultar primero los hechos descubribles en el repositorio y las decisiones vigentes; no preguntar lo que ya está definido.
+2. Si falta una decisión material del responsable, se DEBE usar la herramienta interactiva de preguntas disponible en el entorno. Si no existe, se DEBE preguntar por chat. Ofrecer opciones y recomendación cuando haya alternativas concretas, respetando los límites de la herramienta; una pregunta abierta es válida cuando las opciones no bastan.
+3. Se DEBEN registrar pregunta, respuesta, responsable y requisito o decisión afectada en el artefacto de la fase; antes del ciclo, en PROJECT. No transcribir la conversación. Una respuesta pendiente o el silencio NO constituyen aprobación: registrar bloqueo y detener el trabajo afectado, pudiendo avanzar trabajo independiente habilitado.
+4. Si la aclaración modifica el contrato, volver a Specification con `clarify`; si modifica el enfoque, volver a Plan. Actualizar los registros dependientes y repetir sus gates antes de continuar. Preguntar no habilita a saltar fases ni sustituye autorizaciones de entrega.
+
 ## Artefactos del cambio
 
 La convención es `specs/<número>-<nombre-kebab-case>/`, por ejemplo `specs/001-readme-manual-sdd/`. La secuencia se lleva por repositorio: comienza en `001`, usa al menos tres dígitos y continúa `999`, `1000` sin límite fijo. Para crear un cambio, se toma el mayor número de los directorios de cambio existentes y se suma uno; se ignoran placeholders y no se rellenan huecos. Los cambios cancelados conservan su directorio y estado, y sus números no se reutilizan. Si dos ramas crean el mismo número, antes de integrar se renumera el cambio entrante y se actualizan sus referencias. El identificador no determina prioridad, dependencias ni nombre de rama; no requiere contador o comando.

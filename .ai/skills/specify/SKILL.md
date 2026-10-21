@@ -7,6 +7,7 @@ description: Abrir un cambio, clasificar su nivel y redactar el contrato funcion
 
 ## Lee
 
+- [Preguntas y aclaraciones](../../workflow.md#preguntas-y-aclaraciones).
 - Workflow: [Artefactos del cambio](../../workflow.md#artefactos-del-cambio) (numeración), [Niveles de cambio](../../workflow.md#niveles-de-cambio) y [1. Specification](../../workflow.md#1-specification).
 - `PROJECT.md` y la solicitud. Del código, solo lo necesario para delimitar el alcance.
 

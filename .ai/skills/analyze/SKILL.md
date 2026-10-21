@@ -8,7 +8,8 @@ description: Comprobar coherencia y cobertura entre contrato, Plan y Tasks antes
 ## Lee
 
 - Workflow: gate de entrada de [4. Implementation](../../workflow.md#4-implementation).
-- Contrato, Plan y Tareas del cambio. Nada más.
+- [Preguntas y aclaraciones](../../workflow.md#preguntas-y-aclaraciones).
+- Contrato, Plan y Tareas del cambio; partes pertinentes de `PROJECT.md` y decisiones referenciadas para contrastar coherencia.
 
 ## Produce
 

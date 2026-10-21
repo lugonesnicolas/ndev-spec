@@ -48,3 +48,7 @@ El contrato y el Plan no cambiaron. La observación de E4 reabrió T2: se agreg�
 Entregado según PROJECT: rama `docs/sdd-workflow-skills` publicada en `origin` con el contenido verificado en `2b76cd1`, y [PR #3](https://github.com/lugonesnicolas/ndev-spec/pull/3) contra `main`, con descripción en español. El merge queda pendiente de confirmación explícita del usuario; es compatible con el contrato, que no lo exige. Este registro se agrega en un commit posterior al PR.
 
 Actualización: tras la observación de E4, la rama incluye el contenido re-verificado en `493c8e5` (paso de cierre de `ship` en `b4db092`), publicado en el mismo PR y resumido en un comentario. Handoff final: revisar y, si se aprueba, mergear el PR; no quedan tareas de 003.
+
+## Integración
+
+Nota agregada durante 004: el estado «PR abierto, sin mergear» anterior describe la entrega original. El PR #3 ya se integró en `main` mediante `9789384098f21106261f125339263e62383866ee` (mensaje `Merge pull request #3 from lugonesnicolas/docs/sdd-workflow-skills`, padres `43875b9` y `008e403`), según `git show --no-patch --format=fuller 9789384` y su ascendencia local. La evidencia, límites y condiciones originales no cambian. Siguiente paso actual: continuar el cierre de v1 con 004.

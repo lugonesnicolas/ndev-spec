@@ -7,6 +7,7 @@ description: Ejecutar las tareas habilitadas y registrar su avance (Implementati
 
 ## Lee
 
+- [Preguntas y aclaraciones](../../workflow.md#preguntas-y-aclaraciones).
 - Workflow: [4. Implementation](../../workflow.md#4-implementation). Reglas de [Desarrollo](../../rules/development.md) y [Seguridad](../../rules/security.md); [Trabajo con Git](../../rules/git-workflow.md) si el proyecto usa Git.
 - El registro Tareas y, por tarea, los requisitos y partes del Plan que la afectan y el código que toca.
 

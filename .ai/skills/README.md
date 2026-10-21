@@ -21,3 +21,5 @@ Cada skill es `<nombre>/SKILL.md`: frontmatter con `name` y `description`, y cue
 | [ship](ship/SKILL.md) | Ship | Entregar según el proyecto y registrar el cierre. |
 
 El orden es el de la tabla. En el nivel mínimo varias skills pueden aplicarse en una misma sesión; cada gate se evalúa y registra igual. Ninguna skill reemplaza el gate de la siguiente.
+
+Todas leen el protocolo de [preguntas y aclaraciones](../workflow.md#preguntas-y-aclaraciones): herramienta interactiva disponible o chat, decisiones persistidas y trabajo afectado bloqueado hasta resolverlas. `clarify` conserva la responsabilidad sobre el contrato aunque una ambigüedad se descubra en otra fase.
