@@ -1,6 +1,6 @@
 # Plan — 003-sdd-workflow-skills
 
-Estado: Plan completo; gate de salida cumplido. Coherente con [spec.md](spec.md); cubre R1–R10 sin decisiones materiales abiertas.
+Estado: Plan cumplido; cambio entregado. Coherente con [spec.md](spec.md); cubre R1–R10 sin decisiones materiales abiertas.
 
 ## Enfoque
 

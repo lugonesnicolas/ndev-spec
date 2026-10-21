@@ -1,6 +1,6 @@
 # 003 — Skills del workflow SDD
 
-Estado: Specification completa; gate de salida cumplido. Contrato, cambios de gate y umbrales aprobados por el usuario. Nivel: extendido (cambia el canon y requiere decisión arquitectónica).
+Estado: entregado (ver Cierre en verification.md); Specification cumplida. Contrato, cambios de gate y umbrales aprobados por el usuario. Nivel: extendido (cambia el canon y requiere decisión arquitectónica).
 
 ## Contrato
 

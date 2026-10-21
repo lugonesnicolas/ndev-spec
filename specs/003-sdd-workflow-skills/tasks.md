@@ -1,6 +1,6 @@
 # Tasks — 003-sdd-workflow-skills
 
-Estado: Implementation completa; gate de salida cumplido. Gates de Specification, Plan y Tasks cumplidos; análisis registrado.
+Estado: Implementation completa; cambio entregado. Gates de Specification, Plan y Tasks cumplidos; análisis registrado.
 
 | ID | Trabajo y requisitos | Dependencias | Criterio de finalización | Estado |
 | --- | --- | --- | --- | --- |

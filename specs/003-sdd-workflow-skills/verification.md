@@ -1,6 +1,6 @@
 # Verification — 003-sdd-workflow-skills
 
-Estado: Verification satisfactoria; gate de salida cumplido. Ship pendiente.
+Estado: Verification satisfactoria; Ship completo (PR abierto, sin mergear).
 
 Revisión verificada: `9f6fea8` (producto en `b557a9a`; T4 solo actualizó `tasks.md`). Los ensayos se hicieron en repositorios temporales fuera de este repositorio, con el `.ai/` de `b557a9a`; sus auxiliares (`measure.py`, `links.py` y los repos de prueba) no forman parte del producto.
 
@@ -44,4 +44,4 @@ Contrato, Plan y Tasks no cambiaron durante Verification. Siguiente paso: Ship s
 
 ## Cierre
 
-Pendiente de Ship.
+Entregado según PROJECT: rama `docs/sdd-workflow-skills` publicada en `origin` con el contenido verificado en `2b76cd1`, y [PR #3](https://github.com/lugonesnicolas/ndev-spec/pull/3) contra `main`, con descripción en español. El merge queda pendiente de confirmación explícita del usuario; es compatible con el contrato, que no lo exige. Este registro se agrega en un commit posterior al PR. Handoff final: revisar y, si se aprueba, mergear el PR; no quedan tareas de 003.
