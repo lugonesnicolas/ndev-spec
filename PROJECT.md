@@ -2,7 +2,7 @@
 
 ## Propósito y estado
 
-ndev-spec desarrolla un harness portable para Specification-Driven Development asistido por agentes. La **v1 manual está cerrada e integrada** sobre Stage 4 — Workflow skills; el cambio [005](specs/005-install-update-cli/spec.md) incorpora la CLI para revisión y pruebas remotas, con verificación multiplataforma pendiente. El canon compartido reside en [`.ai/`](.ai/README.md); este repositorio es su origen. La revisión entregada de cada cambio se registra en su `verification.md`, para evitar que este contrato apunte al commit que lo contiene.
+ndev-spec desarrolla un harness portable para Specification-Driven Development asistido por agentes. La **v1 manual está cerrada e integrada** sobre Stage 4 — Workflow skills; el cambio [005](specs/005-install-update-cli/spec.md) incorpora la CLI en revisión: matriz multiplataforma satisfactoria y ensayos directos desde GitHub pendientes. El canon compartido reside en [`.ai/`](.ai/README.md); este repositorio es su origen. La revisión entregada de cada cambio se registra en su `verification.md`, para evitar que este contrato apunte al commit que lo contiene.
 
 Las reglas metodológicas, las [skills](.ai/skills/README.md) por etapa y los niveles de cambio ya están escritos. La [CLI](docs/architecture/installer-cli.md) amplía el [diseño manual](docs/architecture/installation-updates.md) con init/update y adapter mínimo AGENTS. Comandos del workflow, personas/agentes, adapters específicos, plantillas y gates automáticos siguen pendientes.
 
@@ -18,7 +18,7 @@ Se aplican las instrucciones de [`AGENTS.md`](AGENTS.md), el canon y los gates d
 
 Para cambios documentales se revisan coherencia normativa, enlaces locales, criterios de la spec, `git diff --check` y estado de Git. Se agregan comprobaciones específicas según el cambio; una suite exitosa no sustituye la evidencia por requisito.
 
-Para la CLI: `npm test` y `npm run test:package`, con Node >=24 y Git. Para `005-install-update-cli`, el usuario autorizó resguardar 004 y 005 en `feat/install-update-cli` y, posteriormente, publicar esa rama y abrir un PR en español contra main para revisión y pruebas remotas. El PR permanecerá como borrador mientras Verification sea parcial. Sin merge/tag/release ni publicación npm. La verificación completa requiere pruebas en Windows, Linux y macOS; hasta disponer de toda la evidencia, Verification y Ship permanecen pendientes. La publicación para verificar no equivale a Ship.
+Para la CLI: `npm test` y `npm run test:package`, con Node >=24 y Git. Para `005-install-update-cli`, el usuario autorizó resguardar 004 y 005 en `feat/install-update-cli` y, posteriormente, publicar esa rama y abrir un PR en español contra main para revisión y pruebas remotas. El PR permanecerá como borrador mientras Verification sea parcial. Sin merge/tag/release ni publicación npm. La matriz Windows/Linux/macOS pasó sobre 3b62a38; Verification y Ship siguen pendientes de los ensayos remotos restantes y su evidencia. La publicación para verificar no equivale a Ship.
 
 Para `001-readme-manual-sdd`, Ship significa commits coherentes en la rama local `docs/readme-manual-sdd`, después de Verification satisfactoria. No requiere push, PR ni integración en `main`. El commit entregado y el handoff final se registran en `specs/001-readme-manual-sdd/verification.md` mediante un cierre documental posterior. Para otros cambios, el mecanismo de entrega debe definirse en su Specification y Plan antes del gate de Ship.
 

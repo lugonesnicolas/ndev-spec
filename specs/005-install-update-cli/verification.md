@@ -1,6 +1,6 @@
 # Verificación — 005
 
-Estado: Verification parcial; rama publicada y PR #5 abierto como borrador, sin Ship. Falta completar evidencia multiplataforma y ensayos directos desde GitHub. La publicación permite evaluar la CLI, sin declarar release estable. Fecha: 9 de noviembre de 2026.
+Estado: Verification parcial; matriz Windows/Linux/macOS satisfactoria sobre 3b62a38. PR #5 en borrador, sin Ship. Falta completar ensayos directos desde GitHub. La publicación permite evaluar la CLI, sin declarar release estable. Fecha: 9 de noviembre de 2026.
 
 ## Evidencia
 
@@ -12,7 +12,7 @@ Estado: Verification parcial; rama publicada y PR #5 abierto como borrador, sin 
 | R4 | Fixtures y revisión del motor | Limpieza, índice/HEAD preservados, ignorados, junctions/symlinks, atributos actuales/propuestos, sparse/flags y revalidación incluso de creación concurrente de Git | Satisfactorio en Windows |
 | R5 | Actualización/retroceso | Altas, modificaciones, bajas, cambio solo de procedencia, no-op antes/después del commit, retroceso, divergencia confirmada, CRLF comprobable y mezcla rechazada | Satisfactorio en Windows |
 | R6 | Fallos inyectados | Restauración acotada, conversiones archivo/directorio y cambio concurrente con recovery.json; cambios de archivos gestionados sin actualización no se ocultan | Satisfactorio en Windows; no equivale a interrupción física |
-| R7 | Tests, documentación y matriz | Windows ejecutado; matriz de tres SO preparada; Linux/macOS no ejecutados. Enlaces locales y whitespace comprobados | Pendiente de evidencia multiplataforma |
+| R7 | Tests, documentación y matriz | Windows local: 41/41 y smoke; Actions #6: npm test y test:package satisfactorios en Windows, Ubuntu y macOS. Enlaces y whitespace comprobados | Matriz satisfactoria; ver ensayo GitHub separado |
 | R8 | Inspección Git y handoff | Alineación de 004 y CLI 005 en la misma rama; publicación posterior y PR #5 confirmados, con referencias en Publicación para evaluación. Contrato/Plan/Tareas alineados | Publicado para verificar; Ship pendiente de R7 |
 
 ## Fallos y correcciones
@@ -20,6 +20,10 @@ Estado: Verification parcial; rama publicada y PR #5 abierto como borrador, sin 
 CI del PR #5 sobre 146be07: [ejecución #4](https://github.com/lugonesnicolas/ndev-spec/actions/runs/42649137550). Ubuntu pasó npm test y test:package. Windows falló npm test (16/41 checks satisfactorios, 25 fallidos) por «El destino está dentro de otro repositorio» al comparar cadenas de rutas; macOS falló (6/41 satisfactorios, 35 fallidos) por «Enlace/junction no admitido: /var». Los escenarios fallan antes de su comportamiento específico; son dos causas repetidas, no fallos independientes de cada contrato. El workflow se ejecuta por push y pull_request, de modo que hay ejecuciones duplicadas.
 
 Corrección preparada antes de repetir CI: conservar safeParents sobre la ruta original y comparar la raíz Git y el destino mediante realpath nativo; agregar ambas rutas al diagnóstico de una diferencia real. Fixtures y smoke usan el padre temporal canónico para no presentar el alias de sistema /var como destino del consumidor. No se exceptúan enlaces del control de seguridad. Regresión nueva: raíz física equivalente (incluida la forma de os.tmpdir en Windows) aceptada y subdirectorio rechazado. Primer ensayo local dirigido: 4/4 satisfactorios para proyecto existente, idempotencia, rechazo de enlaces y destino bare. Suite completa local y matriz remota en repetición; no declarar T6 cerrada hasta ver sus resultados.
+
+Resultado de repetición sobre `3b62a38053f7cc32f1942ae4f3d2e72854192819`: **41/41 pruebas locales satisfactorias**, smoke local satisfactorio y [Actions #6](https://github.com/lugonesnicolas/ndev-spec/actions/runs/42650894087) con los tres jobs satisfactorios: Windows 129276615097, Ubuntu 129276614718 y macOS 129276614205. En todos pasaron npm test y npm run test:package. Los fallos anteriores quedan corregidos; T6 completa. No se cambió el workflow para ocultarlos ni se desactivaron comprobaciones. Los pendientes multiplataforma mencionados en los handoffs anteriores son históricos y quedan superados por esta evidencia.
+
+Ensayo adicional directo desde GitHub, separado del CI: npm 10.9.3/Node 22 como lanzador de Node 24 falló en el propio npm con «GitFetcher requires an Arborist constructor to pack a tarball», antes de iniciar la CLI. Con Node 24 y npm 11 temporales, npx descargó y arrancó la CLI fijada a 3b62a38, pero el fetch del canon por Git HTTPS quedó bloqueado en este entorno por Schannel SEC_E_NO_CREDENTIALS. No se aplicaron cambios al destino del dry-run. La descarga de la herramienta con npm 11 no demuestra instalación completa del canon remoto; ese criterio sigue pendiente y no se confunde con la matriz satisfactoria.
 
 Primera ejecución: 17/19 casos satisfactorios. Dos fallos: Git trató de codificar el propio .gitattributes del fixture como UTF-16 al prepararlo; una ruta Windows inexistente produjo un diagnóstico demasiado genérico. Se corrigieron creación del blob de fixture y diagnóstico de origen. Segunda ejecución: 19/19 satisfactorios.
 
