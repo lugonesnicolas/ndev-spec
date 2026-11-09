@@ -8,6 +8,8 @@ CLI y motor separados, stdlib Node. Motor prepara snapshots Git en temporal, val
 
 Ajuste R1: separar resumen y detalle en el renderer de CLI. Resumen agrupa altas/modificaciones/bajas de .ai; explica creación de PROJECT/AGENTS; para archivos locales existentes muestra solo líneas cambiadas y omisiones, sin copiar secciones ajenas. --diff habilita inventario y contenido completo sin comillas JSON, manteniendo escapes para controles de terminal y metadatos de binarios/modos. Probar salida acotada con canon grande y contexto externo grande, flags combinados, no-op, dry-run y cancelación; motor sin cambios.
 
+Corrección R2/R5: comparar source explícito canonizado contra el origen registrado en vez de rechazar la presencia del argumento. Reproducir la repetición con y sin --source, ruta local equivalente y origen distinto; verificar no-op sin cambios de archivos/índice. Conservar el bloqueo de cambio de revisión mediante init; si HEAD avanzó, fijar --ref a la instalada o usar update.
+
 ## Verificación por criterio
 
 R1: parser, ayuda, confirmación/cancelación, dry-run y smoke de paquete npx local sin publicación. R2/R5: fixtures Git con revisiones y blobs conocidos, procedencia/preservación, update/rollback/no-op y divergencias confirmadas. R3: adapter delimitado, conservación y bloque alterado. R4: índice/HEAD antes/después, ignorados, enlaces, atributos y Git sin HEAD. R6: fallos inyectados, respaldo y cambios concurrentes. R7: node:test y matriz de SO con smoke npx; comprobación documental/enlaces/diff. R8: revisar diff/índice y guardar 004 y 005 en commits separados dentro de `feat/install-update-cli`, conforme a la ampliación autorizada; sin publicación ni declaración de Ship.

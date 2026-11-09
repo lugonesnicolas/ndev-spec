@@ -263,9 +263,25 @@ test('CLI dry-run y cancelación conservan destino; aceptación muestra constitu
 
 test('init repetido sin commit es no-op y no altera el índice', t => {
   const f = fixture(t); apply(f.make());
+  const explicit = f.make();
+  assert.equal(explicit.operations.length, 0);
+  assert.equal(apply(explicit).changed, false);
   const plan = f.make({ source: undefined });
   assert.equal(plan.operations.length, 0);
   assert.equal(apply(plan).changed, false);
+  assert.equal(git(f.target, ['ls-files']).length, 0);
+});
+
+test('init reconoce ruta equivalente del origen pero bloquea otro origen', t => {
+  const f = fixture(t); apply(f.make());
+  const before = git(f.target, ['status', '--porcelain=v1', '-z']);
+  const equivalent = f.make({ source: `${f.source}${path.sep}..${path.sep}${path.basename(f.source)}` });
+  assert.equal(apply(equivalent).changed, false);
+  assert.throws(() => f.make({ source: f.temp }), /No se permite cambiar el origen registrado/);
+  write(f.source, 'next-revision.txt', 'sin cambios del canon'); commit(f.source);
+  assert.throws(() => f.make(), /usar update para cambiar revisión/);
+  assert.equal(apply(f.make({ ref: f.base })).changed, false);
+  assert.deepEqual(git(f.target, ['status', '--porcelain=v1', '-z']), before);
   assert.equal(git(f.target, ['ls-files']).length, 0);
 });
 

@@ -25,6 +25,8 @@ Ampliación autorizada por el usuario el 9 de noviembre de 2026: guardar la alin
 
 Ajuste de usabilidad solicitado por el usuario tras cancelar la instalación para revisar su salida: reducir el mensaje a información concreta, entendible y fácil de seguir. Se adopta resumen predeterminado y detalle optativo mediante --diff; no se cambia preparación, aplicación, recuperación ni confirmación. Responsable: usuario; requisito afectado: R1.
 
+Corrección derivada del ensayo del usuario: repetir init con --source equivalente al origen registrado debe aceptarse; solo una diferencia real bloquea. Las rutas locales se comparan tras resolver su ubicación canónica; no se infiere equivalencia entre URLs diferentes. Se mantiene la selección HEAD por defecto y el requisito de usar update para cambiar una revisión instalada. R2/R5; sin decisión arquitectónica nueva.
+
 ## Handoff
 
 Specification, Plan, Tasks e Implementation cumplidas. Decisión documentada antes del código; pruebas locales satisfactorias y resultado disponible para revisión. [Verification](verification.md) conserva evidencia y pendiente Linux/macOS; su gate de salida y Ship siguen sin cumplir. Resguardo mediante commits locales autorizado; sin publicación ni versión distribuida.

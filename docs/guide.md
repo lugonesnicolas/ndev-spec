@@ -40,6 +40,8 @@ El comando muestra destino, origen, revisión y un resumen de los archivos que c
 
 En un proyecto nuevo crea el directorio y Git, sin commit inicial obligatorio. En un repositorio existente, las operaciones con escrituras exigen índice y árbol limpios, sin limpiar ni hacer stash automáticamente; revisar también ignorados. Una repetición comprobada sin cambios no escribe, incluso si el commit de adquisición sigue pendiente. Usar la raíz del repositorio; worktrees enlazados, sparse checkout, enlaces en rutas gestionadas o flags que ocultan cambios se rechazan.
 
+Al repetir `init`, se puede omitir --source o indicar el mismo origen (las rutas locales equivalentes se resuelven a su ubicación canónica). Un origen diferente sigue bloqueado. Si HEAD del origen avanzó desde la instalación, usar `--ref <revisión-instalada>` para repetirla exactamente; para incorporar otra revisión corresponde `update`, después de resolver y confirmar los cambios pendientes del consumidor.
+
 Se instala exclusivamente el canon. Si falta PROJECT, declara contexto, comprobaciones y entrega pendientes. Si existe, conserva todo fuera de `## ndev-spec`. AGENTS incorpora un bloque delimitado con referencias; su contenido externo se conserva. Una instalación manual sin ese bloque requiere revisión manual antes de actualizar con la CLI. No se sobrescribe una `.ai/` sin procedencia reconocida.
 
 Revisar las instrucciones propias: la CLI detecta marcas alteradas y prohibiciones explícitas de usar el canon, pero no interpreta todas las contradicciones posibles en lenguaje natural. La confirmación incluye esa revisión. No se habilitan automáticamente skills nativas de un proveedor.
