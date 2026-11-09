@@ -18,6 +18,8 @@ Dependencias externas de ejecución: Node >=24 y Git. El entorno actual tiene No
 
 ## Handoff
 
+Corrección CI: comparar rutas físicas de raíz Git/destino solo después de validar los componentes originales sin enlaces. Agregar diagnóstico de ambas rutas cuando realmente no coincidan. Canonizar el padre temporal usado por fixtures y smoke, manteniendo la política estricta de safeParents. Probar raíz equivalente y rechazo de subdirectorio/enlace; repetir suite local y matriz GitHub para confirmar las hipótesis por plataforma. No cambiar criterios ni omitir pruebas fallidas.
+
 Publicación autorizada para verificar: revisar diff y enlaces, confirmar la ampliación de R8 en un commit documental, push normal de feat/install-update-cli y PR en español contra main. Mantenerlo como borrador con pendientes explícitos; comprobar URL/head/base y estado inicial de Actions. Registrar referencias después de confirmar la publicación. Sin merge ni declaración de Ship mientras falte Verification. Esta preparación no cambia la implementación ni exige repetir pruebas de código sin modificaciones.
 
 Plan y Tasks ejecutados conforme a la decisión previa. Pruebas locales y paquete satisfactorios; continuar con la evidencia Linux/macOS de [Verification](verification.md). Sin Ship mientras ese criterio siga pendiente. Cambios preexistentes de 004 preservados.

@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { git } from '../lib/git.js';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'ndev-package-'));
+const temp = fs.mkdtempSync(path.join(fs.realpathSync.native(os.tmpdir()), 'ndev-package-'));
 function npmCli() {
   if (process.env.npm_execpath && fs.existsSync(process.env.npm_execpath)) return process.env.npm_execpath;
   for (const dir of (process.env.PATH || '').split(path.delimiter)) {

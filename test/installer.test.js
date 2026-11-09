@@ -27,7 +27,7 @@ function init(root) {
   git(root, ['config', 'core.autocrlf', 'false']);
 }
 function fixture(t) {
-  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'ndev-test-'));
+  const temp = fs.mkdtempSync(path.join(fs.realpathSync.native(os.tmpdir()), 'ndev-test-'));
   t.after(() => fs.rmSync(temp, { recursive: true, force: true }));
   const source = path.join(temp, 'source with spaces');
   const target = path.join(temp, 'consumer with spaces');
@@ -439,4 +439,17 @@ test('destino bare y metadato .git enlazado no se reinicializan', t => {
   fs.mkdirSync(other);
   fs.symlinkSync(path.join(f.temp, 'missing metadata'), path.join(other, '.git'), process.platform === 'win32' ? 'junction' : 'dir');
   assert.throws(() => f.make({ directory: other }), /\.git no regular/);
+});
+
+test('raíz física equivalente de Git se acepta y subdirectorio se rechaza', t => {
+  const f = fixture(t); init(f.target);
+  write(f.target, 'app', 'base'); commit(f.target);
+  const destination = process.platform === 'win32'
+    ? path.join(os.tmpdir(), path.basename(f.temp), path.basename(f.target)) : f.target;
+  const proposal = f.make({ directory: destination });
+  assert.ok(proposal.operations.length > 0);
+  assert.equal(fs.existsSync(path.join(f.target, '.ai')), false);
+  const child = path.join(f.target, 'subdirectory');
+  fs.mkdirSync(child);
+  assert.throws(() => f.make({ directory: child }), /dentro de otro repositorio/);
 });

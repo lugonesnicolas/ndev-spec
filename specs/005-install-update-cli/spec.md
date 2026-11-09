@@ -29,6 +29,8 @@ Corrección derivada del ensayo del usuario: repetir init con --source equivalen
 
 Autorización posterior del usuario: publicar la rama y abrir el PR para probar adquisición desde GitHub y ejecutar la matriz. Sustituye el límite anterior de resguardo solo local; R8. No autoriza merge, tag, release ni declarar Verification/Ship completos. Los gates pendientes permanecen explícitos.
 
+Corrección de CI R4/R7: preservar validaciones de enlaces y reconocer la misma raíz física de Git frente a representaciones Windows distintas. Los temporales internos de ensayos se crean bajo la ruta canónica del temporal del sistema (macOS /var puede ser un enlace); no se permite seguir enlaces proporcionados como destino. Registrar fallos iniciales y verificar nuevamente la matriz antes de declarar cumplimiento.
+
 ## Handoff
 
 Specification, Plan, Tasks e Implementation cumplidas. Decisión documentada antes del código; pruebas locales satisfactorias. [Verification](verification.md) conserva evidencia y pendientes; su gate de salida y Ship siguen sin cumplir. Publicación de rama y PR autorizada para revisión y ejecución de pruebas remotas; sin release ni versión estable declarada.

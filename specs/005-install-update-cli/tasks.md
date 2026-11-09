@@ -7,12 +7,15 @@
 | T3 | Matriz y documentación; R7/R8 | T1/T2 | Comprobaciones locales y evidencia de límites; docs coherentes | Completa: matriz preparada, documentación y evidencia local; ejecución externa pendiente en Verification |
 | T4 | Reducir salida y agregar --diff; R1/R7 | T1/T2/T3 | Resumen acotado, cambios locales legibles, detalle optativo y dry-run explícito; pruebas dirigidas y guía actualizada | Completa: renderer, CLI, smoke de paquete y documentación comprobados |
 | T5 | Corregir repetición de init con --source; R2/R5 | T1/T2 | Mismo origen explícito o ruta equivalente permite no-op; origen distinto sigue bloqueado; regresión y guía comprobadas | Completa: reproducción fallida previa, 3/3 pruebas dirigidas y ampliación 1/1 con revisión fijada; paquete satisfactorio |
+| T6 | Corregir portabilidad observada en CI; R4/R7 | T1/T2 | Comparación de raíz física y temporales canónicos probados; suite local y matriz remota repetidas, sin relajar rechazo de enlaces | En verificación: corrección implementada, 4/4 casos locales dirigidos; suite y matriz pendientes |
 
 ## Análisis de coherencia y cobertura
 
 Contrato, Plan y decisión cubren R1–R8 sin decisiones materiales abiertas. El cambio aprueba las excepciones al diseño manual antes de implementarlas. Pruebas multiplataforma requieren ejecución externa; distinguir trabajo implementado de verificación pendiente. Entrega solo local, sin mezclar cambios de 004. Gates de Specification, Plan y Tasks cumplidos; T1 habilitada.
 
 ## Handoff
+
+T6 habilitada: logs de Windows/macOS identifican bloqueos de rutas antes de las comprobaciones de cada escenario; Linux pasó. Contrato y Plan actualizados; R4/R7 → T6 → regresiones de identidad de raíz, rechazo de anidación/enlaces y matriz. Sin decisión arquitectónica abierta: se conservan controles vigentes. Registrar evidencia del nuevo ensayo antes de cerrar T6.
 
 Publicación para pruebas autorizada por el usuario: R8 y Plan actualizados antes de push/PR. Verificar diff/enlaces, publicar sin force y abrir borrador contra main; registrar confirmación y pendientes de Actions en Verification. No constituye Ship ni modifica las tareas de producto completadas.
 
