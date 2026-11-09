@@ -1,0 +1,28 @@
+# 005 — Instalación y actualización sencilla
+
+Nivel: extendido; introduce una interfaz ejecutable, distribución y adapter. Estado: Specification, Plan, Tasks e Implementation cumplidas; Verification parcial y Ship pendiente. Responsable: usuario, aprobación explícita del plan en la solicitud de implementación.
+
+## Contrato
+
+| ID | Requisito y criterio verificable |
+| --- | --- |
+| R1 | CLI JavaScript sin dependencias de ejecución ni compilación; Node >=24 y Git; ejecutable mediante npx desde un commit Git. `init [directorio]` y `update [directorio]`, `--ref`, `init --source`, `--dry-run`, `--yes` y ayuda. Propuesta revisable y confirmación antes de escribir. |
+| R2 | Copiar exclusivamente el árbol .ai de un commit comprobado, con ocultos y placeholders; procedencia única en PROJECT, preservando contexto ajeno. Sin PROJECT, declarar pendientes sin inferirlos. HEAD por defecto y OID completo persistido. Origen local o remoto explícito; update conserva origen. |
+| R3 | Entrada delimitada en AGENTS que referencia canon/contexto/skills; preservar contenido externo y comprobar bloque gestionado antes de actualizar. Detectar conflictos observables y advertir que contradicciones semánticas arbitrarias requieren revisión humana. Mostrar constitution al terminar. |
+| R4 | Inicializar Git si falta, exigir limpieza en repos existentes; no commits, stage, stash, ramas ni publicación. Detectar colisiones ignoradas, rutas/enlaces y atributos incompatibles. Preparación externa y revalidación anterior a escrituras. |
+| R5 | Actualizar B/L/T comprobando blobs, rutas y procedencia incluso frente a divergencias confirmadas; permitir retroceso y no-op. Rechazar contenido desconocido. |
+| R6 | Recuperación acotada con respaldo externo: ante fallo restaurar solo estado propio sin cambios posteriores; preservar evidencia si no es seguro. Verificar canon y archivos propios antes de éxito; indicar commit pendiente. |
+| R7 | Pruebas automatizadas de comportamiento, paquete npx y matriz Windows/Linux/macOS; registrar lo ejecutado y las limitaciones sin declarar plataformas no ensayadas. Guía, README y PROJECT coherentes. |
+| R8 | Revisión y resguardo local en `feat/install-update-cli`, con commits separados de alineación de 004 y de implementación de 005 en la misma rama. Sin push/PR/merge/tag/release. Evidencia por requisito y handoff persistente; los commits de resguardo no declaran Ship. |
+
+## Alcance y aclaraciones
+
+Las decisiones de la conversación están aprobadas: Node+Git, Git como canal inicial, AGENTS, init/update, revisión interactiva y --yes, tres plataformas, commit delegado. No hay preguntas materiales pendientes para implementar. La portabilidad debe probarse: una matriz preparada no equivale a ejecución satisfactoria. El commit del instalador distribuible solo podrá fijarse tras una entrega versionada futura; no se inventará un OID de archivos aún sin commit.
+
+No se alteran fases ni gates SDD. Sin adapters específicos, actualización de origen, publicación npm ni reconstrucción de specs históricas.
+
+Ampliación autorizada por el usuario el 9 de noviembre de 2026: guardar la alineación de 004 y la CLI de 005 en una misma rama para evitar retrabajo. Reemplaza la restricción inicial de no crear commits locales; no autoriza publicación ni cambia el pendiente de verificación multiplataforma. Responsable: usuario; requisito afectado: R8.
+
+## Handoff
+
+Specification, Plan, Tasks e Implementation cumplidas. Decisión documentada antes del código; pruebas locales satisfactorias y resultado disponible para revisión. [Verification](verification.md) conserva evidencia y pendiente Linux/macOS; su gate de salida y Ship siguen sin cumplir. Resguardo mediante commits locales autorizado; sin publicación ni versión distribuida.

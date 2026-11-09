@@ -2,21 +2,23 @@
 
 ## Propósito y estado
 
-ndev-spec desarrolla un harness portable para Specification-Driven Development asistido por agentes. Etapa actual: **cierre de la v1 manual**, sobre Stage 4 — Workflow skills. El canon compartido reside en [`.ai/`](.ai/README.md); este repositorio es su origen. La revisión entregada de cada cambio se registra en su `verification.md`, para evitar que este contrato apunte al commit que lo contiene.
+ndev-spec desarrolla un harness portable para Specification-Driven Development asistido por agentes. La **v1 manual está cerrada e integrada** sobre Stage 4 — Workflow skills; el cambio [005](specs/005-install-update-cli/spec.md) incorpora la CLI para revisión local, con verificación multiplataforma pendiente. El canon compartido reside en [`.ai/`](.ai/README.md); este repositorio es su origen. La revisión entregada de cada cambio se registra en su `verification.md`, para evitar que este contrato apunte al commit que lo contiene.
 
-Las reglas metodológicas, las [skills](.ai/skills/README.md) por etapa y los niveles de cambio ya están escritos. Comandos, personas/agentes, adapters, plantillas y gates automáticos aún no están definidos. La [instalación y actualización manual](docs/architecture/installation-updates.md) tiene un diseño documentado; las plantillas, el instalador y la automatización de actualizaciones siguen pendientes.
+Las reglas metodológicas, las [skills](.ai/skills/README.md) por etapa y los niveles de cambio ya están escritos. La [CLI](docs/architecture/installer-cli.md) amplía el [diseño manual](docs/architecture/installation-updates.md) con init/update y adapter mínimo AGENTS. Comandos del workflow, personas/agentes, adapters específicos, plantillas y gates automáticos siguen pendientes.
 
-La [guía práctica](docs/guide.md) explica instalación nueva/existente, operación, actualización y recuperación. [004](specs/004-v1-manual-readiness/verification.md) registra la auditoría y evidencia de preparación de v1; no implica una release publicada. Las capacidades disponibles siguen siendo documentales y manuales.
+La [guía práctica](docs/guide.md) explica instalación nueva/existente, operación, actualización y recuperación. [004](specs/004-v1-manual-readiness/verification.md) registra la auditoría de v1; [005](specs/005-install-update-cli/verification.md) la evidencia de la CLI. No hay release publicada ni commit distribuible de la implementación local de 005.
 
 ## Contexto técnico y restricciones
 
-El producto disponible es documentación Markdown versionada en Git. No hay aplicación, dependencias de ejecución, build ni suite automatizada. Las decisiones arquitectónicas se documentan en [`docs/architecture/`](docs/architecture/); cada cambio guarda su contrato y estado en [`specs/`](specs/).
+El canon es Markdown versionado en Git. La CLI usa JavaScript directo, Node >=24 y Git, sin dependencias de ejecución ni build. Tiene pruebas con node:test y smoke de paquete; la matriz de GitHub Actions verifica el instalador, no los gates SDD. Las decisiones arquitectónicas se documentan en [`docs/architecture/`](docs/architecture/); cada cambio guarda su contrato y estado en [`specs/`](specs/).
 
 Se aplican las instrucciones de [`AGENTS.md`](AGENTS.md), el canon y los gates del [workflow](.ai/workflow.md). Las integraciones futuras con herramientas serán adapters y no fuentes de verdad. Los cambios de producto requieren Specification, Plan y Tasks vigentes antes de Implementation.
 
 ## Comprobaciones y entrega
 
 Para cambios documentales se revisan coherencia normativa, enlaces locales, criterios de la spec, `git diff --check` y estado de Git. Se agregan comprobaciones específicas según el cambio; una suite exitosa no sustituye la evidencia por requisito.
+
+Para la CLI: `npm test` y `npm run test:package`, con Node >=24 y Git. Para `005-install-update-cli`, la implementación y evidencia son para revisión local. El usuario autorizó después resguardar la alineación de 004 y la implementación de 005 en una misma rama, `feat/install-update-cli`, con commits locales; sin push/PR/merge/tag/release. La verificación completa requiere pruebas en Windows, Linux y macOS; hasta disponer de toda la evidencia, Verification y Ship permanecen pendientes. Los commits de resguardo no equivalen a Ship.
 
 Para `001-readme-manual-sdd`, Ship significa commits coherentes en la rama local `docs/readme-manual-sdd`, después de Verification satisfactoria. No requiere push, PR ni integración en `main`. El commit entregado y el handoff final se registran en `specs/001-readme-manual-sdd/verification.md` mediante un cierre documental posterior. Para otros cambios, el mecanismo de entrega debe definirse en su Specification y Plan antes del gate de Ship.
 

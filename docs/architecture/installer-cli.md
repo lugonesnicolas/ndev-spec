@@ -1,0 +1,25 @@
+# CLI de adquisición y actualización
+
+Estado: decisión para [005](../../specs/005-install-update-cli/spec.md), registrada antes de implementar. Amplía [instalación manual](installation-updates.md); ese procedimiento conserva su validez manual.
+
+## Decisión y alternativas
+
+JavaScript directo, Node >=24 y Git; librería estándar, sin scripts de lifecycle ni dependencias. Frente a scripts Bash/PowerShell duplicados, una implementación reduce divergencia. Frente a paquete npm o binario, distribución inicial por commit del propio repositorio evita otro canal. El ejecutable es código confiado explícitamente; obtener el canon de otro origen nunca ejecuta código de ese origen.
+
+La revisión del instalador y del canon son independientes. `init` usa el origen oficial salvo --source y HEAD salvo --ref. `update` usa el origen registrado y HEAD salvo --ref; una ruta local se registra absoluta. Referencias se resuelven una vez a commit completo, sin asumir longitud. Se usa repositorio bare temporal, fetch sin checkout y cat-file/ls-tree para extraer blobs exactos, sin filtros ni archive/export-subst. No hay copia de código de aplicación o specs.
+
+Excepciones explícitas al modelo manual: se permite Git sin commit inicial (base vacía) y se delega el commit final al consumidor. La herramienta no toca el índice. Una aplicación comprobada significa archivos instalados, con commit pendiente; no significa Ship del proyecto. La recuperación usa inventario y respaldo externos aun sin HEAD. Un init sin repositorio crea Git tras confirmación; si falla conserva ese Git vacío, sin eliminar recursivamente metadatos. No se promete atomicidad ni bloqueo de otros escritores.
+
+La única ampliación del contenido generado es un bloque breve `<!-- ndev-spec:begin -->` / `<!-- ndev-spec:end -->` en AGENTS y el contexto mínimo de PROJECT cuando falta. Son propiedad del consumidor fuera del bloque/sección. El adapter v1 tiene texto estable e independiente de la revisión del canon; un cambio futuro de formato necesitará migración explícita. Un bloque alterado o marcas ambiguas bloquean. La herramienta no puede demostrar ausencia de contradicciones en lenguaje natural arbitrario: muestra el diff y exige revisar instrucciones preexistentes; rechaza declaraciones explícitas que prohíben leer el canon. --yes supone esa revisión a cargo del invocante.
+
+PROJECT conserva bytes ajenos a la sección de procedencia. Registro ausente en init es válido; duplicado/incompleto o canon preexistente no reconocido bloquea. Adopción de copias sin registro queda en procedimiento manual. init sobre instalación reconocida equivalente es no-op; cambiar revisión requiere update. No se generan specs artificiales.
+
+La propuesta contiene altas, bajas, cambios y diff completo de texto (binarios por tamaño/hash), canon y archivos auxiliares. El inventario registra bytes y modos, sin seguir enlaces; revisa colisiones de caso y rutas portables. En el destino se rechazan reparse points/symlinks en rutas de acceso o gestionadas, sparse checkout y flags de índice que ocultan cambios. Solo archivos regulares 100644/100755 representables; modos ejecutables no se aceptan en Windows. Transformaciones Git distintas de LF/CRLF y atributos de resultado incompatibles bloquean sin ejecutar filtros. El índice y el canon se comparan con blobs; CRLF solo se admite para texto bajo conversión Git comprobable. Una limitación detectable bloquea; no se desactivan controles.
+
+Cada propuesta se prepara fuera del consumidor. Antes de aplicar se revalida estado Git, configuración, atributos, contexto e inventario. Solo se eliminan bajas reconocidas; archivo/directorio se transforma únicamente tras comprobar propiedad de todas las entradas. Backups y manifiesto temporal permiten recuperación acotada. Fallos no ocultan cambios concurrentes: si una ruta ya no coincide con el último estado escrito, se preserva el respaldo y se informa la ubicación. Se verifican inventario final y preservación de archivos ajenos. Los datos temporales excluyen credenciales y se conservan únicamente si hay recuperación pendiente.
+
+## Límites
+
+Los no-op comprobados no escriben y pueden repetirse antes del commit de adquisición; toda propuesta con escrituras exige limpieza del repositorio. La matriz usa únicamente las acciones oficiales [checkout](https://github.com/actions/checkout) y [setup-node](https://github.com/actions/setup-node), versión mayor 7 con runtime Node 24, permiso contents:read y sin persistir credenciales. No son dependencias del consumidor ni una publicación automática.
+
+Git e interacción con archivos no constituyen sandbox frente a un actor hostil concurrente. Se requiere acceso exclusivo durante aplicación. No hay interpretación completa de instrucciones naturales, firmas ni migración de origen. Una URL con credenciales se rechaza. No se debilitan controles por --yes. Los tests del instalador no automatizan gates metodológicos.
