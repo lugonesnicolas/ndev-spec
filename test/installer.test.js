@@ -248,6 +248,11 @@ test('CLI dry-run y cancelación conservan destino; aceptación muestra constitu
   await main([...args, '--dry-run'], { stdin: input, stdout: out, stderr: out });
   assert.equal(fs.existsSync(f.target), false);
   assert.match(output, /Revisión:/);
+  assert.match(output, /Simulación: no se aplicaron cambios/);
+  assert.doesNotMatch(output, /\+# Canon/);
+  await main([...args, '--dry-run', '--diff'], { stdin: input, stdout: out, stderr: out });
+  assert.match(output, /\+# Canon/);
+  assert.equal(fs.existsSync(f.target), false);
   const pending = main(args, { stdin: input, stdout: out, stderr: out });
   input.write('n\n'); await pending;
   assert.match(output, /Cancelado/);

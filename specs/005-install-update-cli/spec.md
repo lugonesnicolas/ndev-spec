@@ -6,7 +6,7 @@ Nivel: extendido; introduce una interfaz ejecutable, distribución y adapter. Es
 
 | ID | Requisito y criterio verificable |
 | --- | --- |
-| R1 | CLI JavaScript sin dependencias de ejecución ni compilación; Node >=24 y Git; ejecutable mediante npx desde un commit Git. `init [directorio]` y `update [directorio]`, `--ref`, `init --source`, `--dry-run`, `--yes` y ayuda. Propuesta revisable y confirmación antes de escribir. |
+| R1 | CLI JavaScript sin dependencias de ejecución ni compilación; Node >=24 y Git; ejecutable mediante npx desde un commit Git. `init [directorio]` y `update [directorio]`, `--ref`, `init --source`, `--dry-run`, `--diff`, `--yes` y ayuda. Salida predeterminada breve: destino/origen/revisión, conteos de cambios del canon y propósito de PROJECT/AGENTS nuevos; cambios concretos de archivos locales existentes sin repetir contenido externo. --diff muestra inventario y contenido anterior/propuesto completo. Confirmación antes de escribir; dry-run indica que no aplicó cambios. |
 | R2 | Copiar exclusivamente el árbol .ai de un commit comprobado, con ocultos y placeholders; procedencia única en PROJECT, preservando contexto ajeno. Sin PROJECT, declarar pendientes sin inferirlos. HEAD por defecto y OID completo persistido. Origen local o remoto explícito; update conserva origen. |
 | R3 | Entrada delimitada en AGENTS que referencia canon/contexto/skills; preservar contenido externo y comprobar bloque gestionado antes de actualizar. Detectar conflictos observables y advertir que contradicciones semánticas arbitrarias requieren revisión humana. Mostrar constitution al terminar. |
 | R4 | Inicializar Git si falta, exigir limpieza en repos existentes; no commits, stage, stash, ramas ni publicación. Detectar colisiones ignoradas, rutas/enlaces y atributos incompatibles. Preparación externa y revalidación anterior a escrituras. |
@@ -22,6 +22,8 @@ Las decisiones de la conversación están aprobadas: Node+Git, Git como canal in
 No se alteran fases ni gates SDD. Sin adapters específicos, actualización de origen, publicación npm ni reconstrucción de specs históricas.
 
 Ampliación autorizada por el usuario el 9 de noviembre de 2026: guardar la alineación de 004 y la CLI de 005 en una misma rama para evitar retrabajo. Reemplaza la restricción inicial de no crear commits locales; no autoriza publicación ni cambia el pendiente de verificación multiplataforma. Responsable: usuario; requisito afectado: R8.
+
+Ajuste de usabilidad solicitado por el usuario tras cancelar la instalación para revisar su salida: reducir el mensaje a información concreta, entendible y fácil de seguir. Se adopta resumen predeterminado y detalle optativo mediante --diff; no se cambia preparación, aplicación, recuperación ni confirmación. Responsable: usuario; requisito afectado: R1.
 
 ## Handoff
 

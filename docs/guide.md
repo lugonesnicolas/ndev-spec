@@ -34,7 +34,9 @@ npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#<commit-instal
 
 `init` acepta `--source <origen>` para repositorios Git locales o remotos. Una ruta local queda registrada absoluta. La revisión del instalador no determina la del canon: `--ref <referencia>` selecciona rama, tag o commit; sin ella se usa HEAD del origen. La selección se resuelve una vez y PROJECT registra el OID completo. `update` conserva ese origen y permite elegir una revisión anterior como un nuevo cambio.
 
-El comando muestra altas, bajas, modificaciones y contenido anterior/propuesto antes de preguntar. `--dry-run` no modifica el destino; `--yes` acepta la propuesta sin preguntar y requiere que el invocante haya revisado compatibilidad de instrucciones. Sin terminal interactiva se requiere --yes. Ninguna opción permite forzar una colisión o divergencia.
+El comando muestra destino, origen, revisión y un resumen de los archivos que cambiarán antes de preguntar. Agrupa los archivos de `.ai/` por nuevos, modificados y eliminados. Explica qué crea en PROJECT/AGENTS; si ya existen, muestra solo las líneas cambiadas, hasta 20 por archivo, indicando cualquier omisión. `--diff` muestra cada archivo y su contenido anterior/propuesto completo; puede combinarse con `--dry-run` para revisarlo sin escribir. Por ejemplo: `node bin/ndev-spec.js init /ruta/mi-proyecto --dry-run --diff`.
+
+`--dry-run` termina con «Simulación: no se aplicaron cambios». `--yes` acepta la propuesta sin preguntar y requiere que el invocante haya revisado compatibilidad de instrucciones. Sin terminal interactiva se requiere --yes. Ninguna opción permite forzar una colisión o divergencia.
 
 En un proyecto nuevo crea el directorio y Git, sin commit inicial obligatorio. En un repositorio existente, las operaciones con escrituras exigen índice y árbol limpios, sin limpiar ni hacer stash automáticamente; revisar también ignorados. Una repetición comprobada sin cambios no escribe, incluso si el commit de adquisición sigue pendiente. Usar la raíz del repositorio; worktrees enlazados, sparse checkout, enlaces en rutas gestionadas o flags que ocultan cambios se rechazan.
 
