@@ -14,6 +14,6 @@ El [workflow](.ai/workflow.md) define fases, gates y niveles; el [canon](.ai/REA
 
 ## Estado y contribuciones
 
-El canon sigue siendo Markdown de operación local. La CLI de instalación/actualización y el adapter mínimo AGENTS están implementados para revisión local; la [evidencia de 005](specs/005-install-update-cli/verification.md) registra las pruebas y límites de plataformas. Sin publicación, release ni commit distribuible de esta implementación todavía. Las carpetas reservadas no implican comandos de workflow, agentes ni gates automáticos.
+El canon sigue siendo Markdown de operación local. La CLI de instalación/actualización y el adapter mínimo AGENTS están implementados en `feat/install-update-cli` para revisión y pruebas remotas; la [evidencia de 005](specs/005-install-update-cli/verification.md) registra publicación, pruebas y límites de plataformas. Sin release ni paquete npm publicado. Las carpetas reservadas no implican comandos de workflow, agentes ni gates automáticos.
 
 El [contrato del proyecto](PROJECT.md) registra la etapa y entrega; las [decisiones arquitectónicas](docs/architecture/) explican el diseño. Para contribuir, usar el mismo workflow, documentar decisiones antes de implementarlas y verificar cada criterio. La [auditoría de v1](specs/004-v1-manual-readiness/spec.md) y su [evidencia](specs/004-v1-manual-readiness/verification.md) delimitan la preparación de esta versión.

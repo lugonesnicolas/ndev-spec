@@ -13,7 +13,7 @@ Nivel: extendido; introduce una interfaz ejecutable, distribución y adapter. Es
 | R5 | Actualizar B/L/T comprobando blobs, rutas y procedencia incluso frente a divergencias confirmadas; permitir retroceso y no-op. Rechazar contenido desconocido. |
 | R6 | Recuperación acotada con respaldo externo: ante fallo restaurar solo estado propio sin cambios posteriores; preservar evidencia si no es seguro. Verificar canon y archivos propios antes de éxito; indicar commit pendiente. |
 | R7 | Pruebas automatizadas de comportamiento, paquete npx y matriz Windows/Linux/macOS; registrar lo ejecutado y las limitaciones sin declarar plataformas no ensayadas. Guía, README y PROJECT coherentes. |
-| R8 | Revisión y resguardo local en `feat/install-update-cli`, con commits separados de alineación de 004 y de implementación de 005 en la misma rama. Sin push/PR/merge/tag/release. Evidencia por requisito y handoff persistente; los commits de resguardo no declaran Ship. |
+| R8 | Conservar alineación de 004 e implementación de 005 en `feat/install-update-cli`. Publicar la rama y abrir PR en español contra main, como borrador mientras Verification siga parcial, para revisión y pruebas remotas. Registrar rama, commit y PR. Sin merge/tag/release ni publicación npm. Publicar para verificar no declara Ship ni supera sus gates. |
 
 ## Alcance y aclaraciones
 
@@ -27,6 +27,8 @@ Ajuste de usabilidad solicitado por el usuario tras cancelar la instalación par
 
 Corrección derivada del ensayo del usuario: repetir init con --source equivalente al origen registrado debe aceptarse; solo una diferencia real bloquea. Las rutas locales se comparan tras resolver su ubicación canónica; no se infiere equivalencia entre URLs diferentes. Se mantiene la selección HEAD por defecto y el requisito de usar update para cambiar una revisión instalada. R2/R5; sin decisión arquitectónica nueva.
 
+Autorización posterior del usuario: publicar la rama y abrir el PR para probar adquisición desde GitHub y ejecutar la matriz. Sustituye el límite anterior de resguardo solo local; R8. No autoriza merge, tag, release ni declarar Verification/Ship completos. Los gates pendientes permanecen explícitos.
+
 ## Handoff
 
-Specification, Plan, Tasks e Implementation cumplidas. Decisión documentada antes del código; pruebas locales satisfactorias y resultado disponible para revisión. [Verification](verification.md) conserva evidencia y pendiente Linux/macOS; su gate de salida y Ship siguen sin cumplir. Resguardo mediante commits locales autorizado; sin publicación ni versión distribuida.
+Specification, Plan, Tasks e Implementation cumplidas. Decisión documentada antes del código; pruebas locales satisfactorias. [Verification](verification.md) conserva evidencia y pendientes; su gate de salida y Ship siguen sin cumplir. Publicación de rama y PR autorizada para revisión y ejecución de pruebas remotas; sin release ni versión estable declarada.

@@ -14,7 +14,7 @@ El [workflow](../.ai/workflow.md) es la definición normativa. Esta guía explic
 
 ## Instalación con la CLI
 
-Requiere Node.js 24 o superior y Git. No instala dependencias en el consumidor, no usa modelos y no necesita instalación global. La implementación está disponible localmente; aún no tiene un commit publicado que pueda citarse como versión distribuida.
+Requiere Node.js 24 o superior y Git. No instala dependencias en el consumidor, no usa modelos y no necesita instalación global. La implementación de `feat/install-update-cli` está destinada a evaluación; publicación y estado de las pruebas se registran en Verification de 005. No es una release estable.
 
 Desde esta copia de ndev-spec:
 
@@ -24,12 +24,12 @@ node bin/ndev-spec.js init /ruta/proyecto-existente
 node bin/ndev-spec.js update /ruta/proyecto-existente
 ```
 
-Después de versionar y publicar la implementación, sustituir `<commit-instalador>` por su OID completo para ejecutarla desde cualquier directorio. Estos ejemplos con marcador no son comandos listos para ejecutar:
+Para evaluar desde GitHub, una vez publicada la rama, se puede fijar el commit de código `3d5143f00ef2bbbbd7c752323cdc35e39776e747`. El instalador y el canon se fijan por separado: usar --ref con el mismo OID si se quiere probar exactamente ese canon, porque main puede seguir en la versión manual.
 
 ```text
-npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#<commit-instalador> ndev-spec init mi-proyecto
-npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#<commit-instalador> ndev-spec init .
-npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#<commit-instalador> ndev-spec update .
+npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#3d5143f00ef2bbbbd7c752323cdc35e39776e747 ndev-spec init mi-proyecto --ref 3d5143f00ef2bbbbd7c752323cdc35e39776e747
+npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#3d5143f00ef2bbbbd7c752323cdc35e39776e747 ndev-spec init . --ref 3d5143f00ef2bbbbd7c752323cdc35e39776e747
+npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#3d5143f00ef2bbbbd7c752323cdc35e39776e747 ndev-spec update . --ref 3d5143f00ef2bbbbd7c752323cdc35e39776e747
 ```
 
 `init` acepta `--source <origen>` para repositorios Git locales o remotos. Una ruta local queda registrada absoluta. La revisión del instalador no determina la del canon: `--ref <referencia>` selecciona rama, tag o commit; sin ella se usa HEAD del origen. La selección se resuelve una vez y PROJECT registra el OID completo. `update` conserva ese origen y permite elegir una revisión anterior como un nuevo cambio.

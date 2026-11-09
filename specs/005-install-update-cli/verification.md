@@ -37,6 +37,6 @@ No se han ejecutado runners Linux/macOS en esta sesión. Se intentó inventariar
 
 ## Cierre
 
-Sin Ship. El usuario autorizó después guardar 004 y 005 en `feat/install-update-cli` mediante commits locales para evitar retrabajo. Ese resguardo conserva los pendientes de Verification y no constituye entrega final. Push, PR, merge y publicación siguen fuera del alcance autorizado.
+Sin Ship. El usuario autorizó guardar 004 y 005 en `feat/install-update-cli` mediante commits locales para evitar retrabajo y, posteriormente, publicar esa rama y abrir un PR para revisión y pruebas remotas. Esta autorización conserva los pendientes de Verification y no constituye entrega final. El PR se abre como borrador; merge, tag, release y publicación npm siguen fuera del alcance autorizado. Las referencias confirmadas de publicación se registran a continuación cuando estén disponibles.
 
 La alineación de 004 se guardó en `4da2372` (`docs: alinea cierre e integración de 004`), incluido únicamente el hunk de integración de PROJECT. El commit siguiente reúne la implementación y documentación de 005, junto con el resto del contexto de PROJECT. Revisión documental del resguardo: 154 enlaces locales satisfactorios y diff --check sin errores. No cambió código ejecutable desde las pruebas registradas; este resguardo no añade evidencia multiplataforma.

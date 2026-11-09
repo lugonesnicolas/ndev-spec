@@ -14,6 +14,8 @@ Contrato, Plan y decisión cubren R1–R8 sin decisiones materiales abiertas. El
 
 ## Handoff
 
+Publicación para pruebas autorizada por el usuario: R8 y Plan actualizados antes de push/PR. Verificar diff/enlaces, publicar sin force y abrir borrador contra main; registrar confirmación y pendientes de Actions en Verification. No constituye Ship ni modifica las tareas de producto completadas.
+
 T5 completa: error del usuario reproducido en el guard de source explícito y corregido tras aclarar contrato/Plan. Cobertura R2/R5 → T5 → regresión de idempotencia, equivalencia local, rechazo de migración y repetición de revisión fijada aunque HEAD avance. Gates del ajuste cumplidos antes de implementar; pruebas satisfactorias. Verification global continúa parcial por Linux/macOS.
 
 Ajuste de usabilidad R1: contrato, enfoque y decisión actualizados antes de código; cobertura T4 → R1/R7 → pruebas del renderer y CLI, sin cambios del motor ni decisiones abiertas. Gates de Specification, Plan y Tasks repetidos; T4 e Implementation del ajuste completas. Pruebas locales satisfactorias; Verification global sigue parcial por Linux/macOS. El handoff de la implementación base se conserva:
