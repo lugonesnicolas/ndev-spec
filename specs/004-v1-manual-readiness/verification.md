@@ -1,6 +1,6 @@
 # Verification — 004
 
-Estado: entregado; Verification satisfactoria y Ship completo, PR #4 abierto para revisión, sin merge. Implementation completa en `58f9d76`; producto documental y canon ensayados desde `63f3a380facb4a09259314f437c9d6fa9c294d13`; revisión verificada entregada `581c113f792e4cac77852508a9934ed16aa306f5`.
+Estado: entregado e integrado en main mediante el PR #4; Verification satisfactoria y Ship completo. Integración posterior registrada [abajo](#integración). Implementation completa en `58f9d76`; producto documental y canon ensayados desde `63f3a380facb4a09259314f437c9d6fa9c294d13`; revisión verificada entregada `581c113f792e4cac77852508a9934ed16aa306f5`.
 
 ## Resultado y alcance comprobado
 
@@ -91,7 +91,7 @@ La guía incluye los nueve prompts, tres niveles, puntos de parada, preguntas, e
 | R5 | Nueve prompts y ejemplos revisados; E5 prueba ubicación de artefactos, continuidad, cobertura y retorno por fallo. | Satisfactorio |
 | R6 | E6/E7; diff de preservación vacío y nota histórica contrastada con Git. | Satisfactorio |
 | R7 | E1–E7, métodos, resultados y limitaciones persistidos aquí. | Satisfactorio |
-| R8 — entrega | Rama publicada y PR #4 abierto contra main después de Verification; referencias y confirmación en Cierre. | Satisfactorio; Ship completo |
+| R8 — entrega | Rama publicada y PR #4 abierto contra main después de Verification en la entrega original; referencias y confirmación en Cierre. Integración posterior registrada por separado. | Satisfactorio; Ship completo |
 
 ## Limitaciones
 
@@ -111,10 +111,24 @@ Aplicada la skill sdd-review como complemento del canon local, sin crear fuentes
 
 ## Handoff
 
-Gates de Specification, Plan, Tasks, Implementation, Verification y Ship cumplidos. Contrato y enfoque vigentes, sin bloqueos ni tareas de 004. Siguiente paso: revisión del PR #4 por el responsable; un merge requiere confirmación explícita y no forma parte de la entrega. No hay tag ni release publicada.
+Gates de Specification, Plan, Tasks, Implementation, Verification y Ship cumplidos. Contrato y enfoque vigentes, sin bloqueos ni tareas de 004. El PR #4 ya se integró en main; el estado actual y el siguiente paso se registran en [Integración](#integración). La entrega original no publicó tag ni release.
 
 ## Cierre
+
+Registro histórico de la entrega original; el estado posterior se documenta en [Integración](#integración).
 
 Entrega confirmada: rama `docs/v1-manual-readiness` publicada en origin con `581c113f792e4cac77852508a9934ed16aa306f5` (evidencia de Verification y revisiones independientes), y [PR #4](https://github.com/lugonesnicolas/ndev-spec/pull/4) abierto contra `main`, con título y descripción en español. El conector confirmó estado open, draft=false, merged=false, base main en 9789384 y head en 581c113. El producto y canon son los ensayados de 63f3a38; los commits posteriores solo actualizan los registros de 004.
 
 Este cierre se incorpora en un commit documental posterior al entregado y se publica en el mismo PR. Se comprobaron las cabeceras y handoffs de los cuatro artefactos: todos reflejan entrega completa, sin tareas pendientes y con la misma referencia verificada. Enlaces locales/anclas: 127, sin errores; diff --check satisfactorio. No se ejecutó merge, tag ni release. La revisión/decisión de integración queda al responsable y es compatible con Ship completo según el contrato.
+
+## Integración
+
+Actualización documental del 9 de noviembre de 2026, solicitada por el usuario para alinear el cierre. El [PR #4](https://github.com/lugonesnicolas/ndev-spec/pull/4) se integró en `main` el 21 de octubre de 2026 mediante `1fdb02f6070ca5ac8e1f6a227686ea1d42e1961b` (mensaje `Merge pull request #4 from lugonesnicolas/docs/v1-manual-readiness`, padres `9789384` y `0dfaabd`). El segundo padre contiene el cierre documental posterior a la revisión verificada `581c113`.
+
+Evidencia: `git show --no-patch --format=fuller 1fdb02f`, ascendencia local y confirmación del conector de GitHub: PR cerrado, `merged=true`, head `0dfaabd224233e8cb138648be7089e043bcf42e6` y merge en `1fdb02f`. `git diff 1fdb02f^2 1fdb02f --stat` no muestra diferencias: el árbol integrado coincide con la entrega final del PR.
+
+El Cierre anterior conserva la evidencia y las condiciones de la entrega original, que consistía en un PR para revisión. La integración posterior no cambia el contrato, los resultados, las revisiones ni sus limitaciones. Esta alineación actualiza únicamente cabeceras, handoffs y contexto de PROJECT; no repite ni amplía los ensayos históricos, ni publica tag o release.
+
+Comprobaciones de esta alineación: revisión del diff de los cinco archivos, destinos de sus enlaces locales y ancla de Integración correctos; `git diff --check` satisfactorio. Los párrafos originales de Cierre se conservan íntegros. El canon, la guía y los artefactos de 001–003 permanecen sin cambios en esta alineación. Por solicitud posterior del usuario, esta actualización documental se guarda en `feat/install-update-cli`, junto con los cambios de 005; publicación pendiente. 005 actualiza la guía y el contexto del proyecto por separado, sin alterar el cierre histórico de 004.
+
+Handoff final: 004 cerrada e integrada, sin tareas, bloqueos ni revisión de integración pendientes. La v1 manual queda como base para continuar; el siguiente cambio se definirá con el usuario y recorrerá sus propios gates.

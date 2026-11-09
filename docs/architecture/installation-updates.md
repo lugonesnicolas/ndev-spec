@@ -1,6 +1,6 @@
 # Instalación y actualización de una copia exacta
 
-Estado: decisión vigente para [002](../../specs/002-install-update-design/spec.md), registrada durante Plan antes de los cambios documentales derivados. El mecanismo es manual; no existe instalador ni interfaz de comandos de ndev-spec.
+Estado: decisión vigente para el procedimiento manual de [002](../../specs/002-install-update-design/spec.md), registrada durante Plan antes de los cambios documentales derivados. 002 no implementó instalador ni interfaz de comandos. La [extensión CLI de 005](installer-cli.md) automatiza adquisición/actualización y documenta sus excepciones: inicialización sin commit previo, commit delegado y entrada mínima en AGENTS. Los pasos de este documento siguen describiendo el mecanismo manual.
 
 ## Contexto y alternativas
 

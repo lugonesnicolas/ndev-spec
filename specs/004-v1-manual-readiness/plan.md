@@ -1,6 +1,6 @@
 # Plan — 004
 
-Estado: entregado; Plan y gates posteriores cumplidos. PR #4 abierto para revisión, sin merge. Contrato vigente: [spec.md](spec.md).
+Estado: entregado e integrado en main mediante el PR #4; Plan y gates posteriores cumplidos. Contrato vigente: [spec.md](spec.md). Integración posterior registrada en [Verification](verification.md#integración).
 
 ## Enfoque
 
@@ -29,4 +29,4 @@ No hay build ni suite de producto. Git y PowerShell disponibles; Git Bash dispon
 
 ## Entrega y handoff
 
-Entrega completada: docs/v1-manual-readiness publicada y PR #4 contra main con descripción en español, desde la revisión verificada 581c113; cierre posterior en verification.md, sin autorreferencia. Sin merge/tag/release. Gate de Plan cumplido: requisitos cubiertos por E1–E7 y decisión persistida, sin decisiones materiales abiertas. Tasks y analyze precedieron la implementación; ensayos y revisiones independientes registrados. Siguiente paso: revisión del PR por el responsable; 004 no tiene tareas pendientes.
+Entrega original completada: docs/v1-manual-readiness publicada y PR #4 contra main con descripción en español, desde la revisión verificada 581c113; cierre posterior en verification.md, sin autorreferencia. La entrega original no incluyó merge/tag/release. Gate de Plan cumplido: requisitos cubiertos por E1–E7 y decisión persistida, sin decisiones materiales abiertas. Tasks y analyze precedieron la implementación; ensayos y revisiones independientes registrados. El PR se integró posteriormente en main; evidencia y handoff actual en [Integración](verification.md#integración). 004 no tiene tareas pendientes.

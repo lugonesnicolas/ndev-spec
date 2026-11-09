@@ -1,0 +1,11 @@
+{
+  "name": "ndev-spec",
+  "version": "0.1.0",
+  "description": "Adquisición portable del canon ndev-spec",
+  "type": "module",
+  "bin": { "ndev-spec": "bin/ndev-spec.js" },
+  "engines": { "node": ">=24" },
+  "files": ["bin/", "lib/", "README.md"],
+  "scripts": { "test": "node --test", "test:package": "node scripts/test-package.js" },
+  "private": true
+}

@@ -1,6 +1,6 @@
 # 004 — Auditoría y cierre de la v1 manual
 
-Estado: entregado; Specification, Plan, Tasks, Implementation, Verification y Ship cumplidos. PR #4 abierto para revisión, sin merge. Nivel: extendido, porque modifica el canon y requiere una decisión arquitectónica.
+Estado: entregado e integrado en main mediante el PR #4; Specification, Plan, Tasks, Implementation, Verification y Ship cumplidos. Nivel: extendido, porque modifica el canon y requiere una decisión arquitectónica. La integración posterior se registra en [Verification](verification.md#integración).
 
 ## Contrato
 
@@ -36,4 +36,4 @@ Sin ambigüedades materiales pendientes tras revisar alcance, herramientas de pr
 
 ## Handoff
 
-Cambio entregado en el PR #4 desde docs/v1-manual-readiness, con revisión verificada 581c113 y cierre posterior registrado en verification.md. Plan, decisión y Tasks precedieron la implementación; contrato sin cambios. No quedan bloqueos ni tareas de 004. Siguiente paso: revisar el PR; un merge requiere confirmación explícita y no forma parte de esta entrega. El árbol inicial estaba limpio, en main, con PR #3 integrado en 9789384.
+Cambio entregado en el PR #4 desde docs/v1-manual-readiness, con revisión verificada 581c113 y cierre original registrado en verification.md. Plan, decisión y Tasks precedieron la implementación; contrato sin cambios. El PR se integró posteriormente en main; la evidencia y el handoff actual se centralizan en [Integración](verification.md#integración). No quedan bloqueos ni tareas de 004. El árbol inicial estaba limpio, en main, con PR #3 integrado en 9789384.

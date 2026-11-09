@@ -1,15 +1,54 @@
-# Guía de ndev-spec v1 manual
+# Guía de ndev-spec
 
-Para personas y agentes que quieren incorporar SDD en un repositorio y completar cambios con contratos, decisiones y evidencia persistentes. El producto es Markdown versionado: seis fases, nueve skills y tres niveles de documentación. La [verificación de 004](../specs/004-v1-manual-readiness/verification.md) registra qué se comprobó y sus límites; una release publicada es una entrega posterior.
+Para personas y agentes que quieren incorporar SDD en un repositorio y completar cambios con contratos, decisiones y evidencia persistentes. El canon es Markdown versionado: seis fases, nueve skills y tres niveles de documentación. La [verificación de 004](../specs/004-v1-manual-readiness/verification.md) registra la versión manual; [005](../specs/005-install-update-cli/verification.md) registra la CLI y sus límites de comprobación. No hay release publicada.
 
 ## Elegir un recorrido
 
 - Si ya tenés `.ai/` instalado: ir a [trabajar un cambio](#trabajar-un-cambio).
-- Si el proyecto es nuevo: preparar Git y un commit inicial; luego seguir la instalación.
+- Para instalar o actualizar con Node >=24 y Git: seguir [la CLI](#instalación-con-la-cli).
+- Para instalación manual en un proyecto nuevo: preparar Git y un commit inicial; luego seguir el procedimiento manual.
 - Si tiene desarrollo previo: conservar código, instrucciones y specs, revisar su contexto y luego incorporar el canon.
 - Para mantener una instalación: seguir [actualización y recuperación](#actualización-y-recuperación).
 
-El [workflow](../.ai/workflow.md) es la definición normativa. Esta guía explica cómo aplicarlo; el [diseño de instalación](architecture/installation-updates.md) rige adquisición y recuperación. Solo se distribuye `.ai/`. `PROJECT.md`, `specs/`, instrucciones de agentes y documentación pertenecen al consumidor. No copies estos archivos desde ndev-spec.
+El [workflow](../.ai/workflow.md) es la definición normativa. Esta guía explica cómo aplicarlo; el [diseño manual](architecture/installation-updates.md) y su [extensión CLI](architecture/installer-cli.md) rigen adquisición y recuperación. El canon distribuido es `.ai/`. PROJECT, specs, instrucciones y documentación pertenecen al consumidor; la CLI genera únicamente contexto pendiente, procedencia y una entrada acotada en AGENTS. No copia estos archivos desde el origen.
+
+## Instalación con la CLI
+
+Requiere Node.js 24 o superior y Git. No instala dependencias en el consumidor, no usa modelos y no necesita instalación global. La implementación está publicada para evaluación en `feat/install-update-cli`, con el [PR #5](https://github.com/lugonesnicolas/ndev-spec/pull/5) en borrador; estado de las pruebas en Verification de 005. No es una release estable.
+
+Desde esta copia de ndev-spec:
+
+```text
+node bin/ndev-spec.js init /ruta/mi-proyecto
+node bin/ndev-spec.js init /ruta/proyecto-existente
+node bin/ndev-spec.js update /ruta/proyecto-existente
+```
+
+Para evaluar desde GitHub se puede fijar el commit de código `3b62a38053f7cc32f1942ae4f3d2e72854192819`, cuya matriz pasó en Windows, Linux y macOS. El instalador y el canon se fijan por separado: usar --ref con el mismo OID si se quiere probar exactamente ese canon, porque main puede seguir en la versión manual. Estos comandos requieren Node >=24 en PATH; con Node 22 también hace falta seleccionar Node 24 para ejecutar la CLI. El ensayo de descarga directa encontró un fallo del lanzador npm 10 al empaquetar desde GitHub; con npm 11 arrancó la CLI. La instalación remota completa aún está pendiente de evidencia, según Verification.
+
+```text
+npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#3b62a38053f7cc32f1942ae4f3d2e72854192819 ndev-spec init mi-proyecto --ref 3b62a38053f7cc32f1942ae4f3d2e72854192819
+npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#3b62a38053f7cc32f1942ae4f3d2e72854192819 ndev-spec init . --ref 3b62a38053f7cc32f1942ae4f3d2e72854192819
+npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#3b62a38053f7cc32f1942ae4f3d2e72854192819 ndev-spec update . --ref 3b62a38053f7cc32f1942ae4f3d2e72854192819
+```
+
+`init` acepta `--source <origen>` para repositorios Git locales o remotos. Una ruta local queda registrada absoluta. La revisión del instalador no determina la del canon: `--ref <referencia>` selecciona rama, tag o commit; sin ella se usa HEAD del origen. La selección se resuelve una vez y PROJECT registra el OID completo. `update` conserva ese origen y permite elegir una revisión anterior como un nuevo cambio.
+
+El comando muestra destino, origen, revisión y un resumen de los archivos que cambiarán antes de preguntar. Agrupa los archivos de `.ai/` por nuevos, modificados y eliminados. Explica qué crea en PROJECT/AGENTS; si ya existen, muestra solo las líneas cambiadas, hasta 20 por archivo, indicando cualquier omisión. `--diff` muestra cada archivo y su contenido anterior/propuesto completo; puede combinarse con `--dry-run` para revisarlo sin escribir. Por ejemplo: `node bin/ndev-spec.js init /ruta/mi-proyecto --dry-run --diff`.
+
+`--dry-run` termina con «Simulación: no se aplicaron cambios». `--yes` acepta la propuesta sin preguntar y requiere que el invocante haya revisado compatibilidad de instrucciones. Sin terminal interactiva se requiere --yes. Ninguna opción permite forzar una colisión o divergencia.
+
+En un proyecto nuevo crea el directorio y Git, sin commit inicial obligatorio. En un repositorio existente, las operaciones con escrituras exigen índice y árbol limpios, sin limpiar ni hacer stash automáticamente; revisar también ignorados. Una repetición comprobada sin cambios no escribe, incluso si el commit de adquisición sigue pendiente. Usar la raíz del repositorio; worktrees enlazados, sparse checkout, enlaces en rutas gestionadas o flags que ocultan cambios se rechazan.
+
+Al repetir `init`, se puede omitir --source o indicar el mismo origen (las rutas locales equivalentes se resuelven a su ubicación canónica). Un origen diferente sigue bloqueado. Si HEAD del origen avanzó desde la instalación, usar `--ref <revisión-instalada>` para repetirla exactamente; para incorporar otra revisión corresponde `update`, después de resolver y confirmar los cambios pendientes del consumidor.
+
+Se instala exclusivamente el canon. Si falta PROJECT, declara contexto, comprobaciones y entrega pendientes. Si existe, conserva todo fuera de `## ndev-spec`. AGENTS incorpora un bloque delimitado con referencias; su contenido externo se conserva. Una instalación manual sin ese bloque requiere revisión manual antes de actualizar con la CLI. No se sobrescribe una `.ai/` sin procedencia reconocida.
+
+Revisar las instrucciones propias: la CLI detecta marcas alteradas y prohibiciones explícitas de usar el canon, pero no interpreta todas las contradicciones posibles en lenguaje natural. La confirmación incluye esa revisión. No se habilitan automáticamente skills nativas de un proveedor.
+
+La instalación verificada deja **commit pendiente**; no prepara el índice ni publica cambios. Antes de aplicar se revalida el destino y después se comprueba el resultado. Mantener acceso exclusivo: no hay bloqueo de otros procesos. En un fallo se restauran solo rutas propias sin cambios posteriores. Si la restauración no es segura, el error informa un `recovery.json` externo con ruta, bytes anteriores/propuestos en base64 y modos. Conservarlo, revisar cada ruta y restaurar solo las que todavía coincidan con la escritura de la operación; no usar reset/clean global. Una interrupción abrupta puede dejar ese temporal y archivos parciales: no usar el canon hasta completar la recuperación. Git recién inicializado se conserva incluso si la operación falla.
+
+Después, pedir al agente: «Leé el canon local, AGENTS y PROJECT. Aplicá `.ai/skills/constitution/SKILL.md` para completar contexto y pendientes antes del trabajo que dependa de ellos». Para proyectos existentes, relevar README, manifiestos y comprobaciones reales; empezar SDD con el próximo cambio, sin reconstruir todo el pasado. La operación diaria no necesita Node ni conectividad.
 
 ## Instalación manual
 
@@ -286,8 +325,8 @@ Si Verification falla, persistir el criterio fallido y su evidencia, volver a Im
 
 **Implementation completa** significa tareas terminadas; **Verification satisfactoria**, contrato demostrado con evidencia; **Ship completo**, entrega confirmada según PROJECT. En un proyecto sin build o tests, declarar esa ausencia y aplicar inspecciones/ensayos planificados: no inventar comandos. Un PR abierto puede ser Ship si así lo define el proyecto, pero no implica merge ni release.
 
-## Límites de la primera versión
+## Límites actuales
 
-No hay instalador, actualización automática, adapters, slash commands propios, plantillas obligatorias, agentes preconfigurados ni gates automáticos. Las carpetas reservadas con placeholders no representan capacidades implementadas. El agente necesita instrucciones explícitas para leer el canon; no se promete autodescubrimiento. Los cambios del core se proponen en ndev-spec, sin mantener variantes locales de `.ai/`.
+La CLI automatiza adquisición y actualización con una entrada mínima en AGENTS. No hay adapters específicos de proveedores, slash commands propios, plantillas obligatorias, agentes preconfigurados ni gates SDD automáticos. Las carpetas reservadas con placeholders no representan capacidades implementadas. El descubrimiento de AGENTS depende de la herramienta; siempre se puede indicar al agente que lea el canon. Los cambios del core se proponen en ndev-spec, sin mantener variantes locales de `.ai/`.
 
 La documentación normativa viaja en `.ai/`; esta guía y las decisiones quedan en el origen para consulta al adquirir o actualizar. La operación diaria permanece local y agnóstica de proveedor/modelo.
