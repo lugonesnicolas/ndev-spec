@@ -14,7 +14,7 @@ El [workflow](../.ai/workflow.md) es la definición normativa. Esta guía explic
 
 ## Instalación con la CLI
 
-Requiere Node.js 24 o superior y Git. No instala dependencias en el consumidor, no usa modelos y no necesita instalación global. La implementación de `feat/install-update-cli` está destinada a evaluación; publicación y estado de las pruebas se registran en Verification de 005. No es una release estable.
+Requiere Node.js 24 o superior y Git. No instala dependencias en el consumidor, no usa modelos y no necesita instalación global. La implementación está publicada para evaluación en `feat/install-update-cli`, con el [PR #5](https://github.com/lugonesnicolas/ndev-spec/pull/5) en borrador; estado de las pruebas en Verification de 005. No es una release estable.
 
 Desde esta copia de ndev-spec:
 
@@ -24,7 +24,7 @@ node bin/ndev-spec.js init /ruta/proyecto-existente
 node bin/ndev-spec.js update /ruta/proyecto-existente
 ```
 
-Para evaluar desde GitHub, una vez publicada la rama, se puede fijar el commit de código `3d5143f00ef2bbbbd7c752323cdc35e39776e747`. El instalador y el canon se fijan por separado: usar --ref con el mismo OID si se quiere probar exactamente ese canon, porque main puede seguir en la versión manual.
+Para evaluar desde GitHub se puede fijar el commit de código `3d5143f00ef2bbbbd7c752323cdc35e39776e747`. El instalador y el canon se fijan por separado: usar --ref con el mismo OID si se quiere probar exactamente ese canon, porque main puede seguir en la versión manual. Estos comandos requieren Node >=24 en PATH; con Node 22 también hace falta seleccionar Node 24 para ejecutar la CLI.
 
 ```text
 npx --package=git+https://github.com/lugonesnicolas/ndev-spec.git#3d5143f00ef2bbbbd7c752323cdc35e39776e747 ndev-spec init mi-proyecto --ref 3d5143f00ef2bbbbd7c752323cdc35e39776e747

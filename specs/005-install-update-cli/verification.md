@@ -1,6 +1,6 @@
 # Verificación — 005
 
-Estado: Verification parcial; implementación completa y revisable localmente, sin Ship. Falta evidencia Linux/macOS. No hay publicación ni revisión Git distribuible del instalador. Fecha: 9 de noviembre de 2026.
+Estado: Verification parcial; rama publicada y PR #5 abierto como borrador, sin Ship. Falta completar evidencia multiplataforma y ensayos directos desde GitHub. La publicación permite evaluar la CLI, sin declarar release estable. Fecha: 9 de noviembre de 2026.
 
 ## Evidencia
 
@@ -13,7 +13,7 @@ Estado: Verification parcial; implementación completa y revisable localmente, s
 | R5 | Actualización/retroceso | Altas, modificaciones, bajas, cambio solo de procedencia, no-op antes/después del commit, retroceso, divergencia confirmada, CRLF comprobable y mezcla rechazada | Satisfactorio en Windows |
 | R6 | Fallos inyectados | Restauración acotada, conversiones archivo/directorio y cambio concurrente con recovery.json; cambios de archivos gestionados sin actualización no se ocultan | Satisfactorio en Windows; no equivale a interrupción física |
 | R7 | Tests, documentación y matriz | Windows ejecutado; matriz de tres SO preparada; Linux/macOS no ejecutados. Enlaces locales y whitespace comprobados | Pendiente de evidencia multiplataforma |
-| R8 | Inspección Git y handoff | Alineación de 004 y CLI 005 guardadas en la misma rama local por autorización posterior del usuario; commits de resguardo separados, sin publicación. Contrato/Plan/Tareas alineados | Resguardo local; Ship pendiente de R7 |
+| R8 | Inspección Git y handoff | Alineación de 004 y CLI 005 en la misma rama; publicación posterior y PR #5 confirmados, con referencias en Publicación para evaluación. Contrato/Plan/Tareas alineados | Publicado para verificar; Ship pendiente de R7 |
 
 ## Fallos y correcciones
 
@@ -31,7 +31,7 @@ Ensayo manual del usuario: dry-run e instalación interactiva de 21 archivos del
 
 Ajuste de salida solicitado tras el ensayo del usuario: resumen predeterminado y --diff optativo, sin cambiar el motor. **8/8 pruebas dirigidas satisfactorias** (`node --test --test-name-pattern='instalación grande|actualización informa|detalle optativo|cambios locales extensos|parser|CLI' test/cli-output.test.js test/installer.test.js`, Node 24.22.2). Incluyen canon simulado de 63.000 líneas resumido en menos de 20 líneas, contexto externo grande sin volcar, bajas de actualización, límite explícito de cambios locales, texto completo legible/binarios/escapes ANSI, parser, dry-run con/sin --diff, cancelación y rechazo no interactivo. Ensayo dry-run con los 21 blobs del canon real: resumen breve y cierre «Simulación: no se aplicaron cambios». Smoke tarball y npx/Git por commit satisfactorio. Ayuda y guía actualizadas; el éxito termina con commit pendiente y un único siguiente paso para constitution. El criterio multiplataforma permanece pendiente; las pruebas anteriores del motor no se reemplazan por estas pruebas de presentación.
 
-Node del host: 22.18.0. Se obtuvo Node 24.22.2 con npx y caché temporal, sin modificar dependencias del repositorio. La CLI pública rechaza Node <24. Los ensayos usan repositorios Git desechables y fallos simulados, no cortes eléctricos reales. El canal Git de npx se probó con un commit de un repositorio temporal que contiene el paquete; no demuestra descarga pública de archivos todavía sin commit.
+Node del host: 22.18.0. Se obtuvo Node 24.22.2 con npx y caché temporal, sin modificar dependencias del repositorio. La CLI pública rechaza Node <24. Los ensayos usan repositorios Git desechables y fallos simulados, no cortes eléctricos reales. En esos ensayos, el canal Git de npx se probó con un repositorio temporal que contiene el paquete; la descarga directa desde GitHub todavía requiere su propia evidencia.
 
 No se han ejecutado runners Linux/macOS en esta sesión. Se intentó inventariar WSL (`Wsl/EnumerateDistros/Service/E_ACCESSDENIED`) y consultar Docker (API docker_engine y configuración inaccesibles bajo los permisos actuales); no se iniciaron servicios ni se alteraron permisos. Ejecutar `.github/workflows/installer-tests.yml` tras una publicación autorizada, o ejecutar `npm test` y `npm run test:package` en esos entornos. Preparar la matriz no cumple esa evidencia. Verification y Ship permanecen pendientes mientras falte R7; no declarar portabilidad completa ni inventar un commit verificado del instalador.
 
@@ -40,3 +40,11 @@ No se han ejecutado runners Linux/macOS en esta sesión. Se intentó inventariar
 Sin Ship. El usuario autorizó guardar 004 y 005 en `feat/install-update-cli` mediante commits locales para evitar retrabajo y, posteriormente, publicar esa rama y abrir un PR para revisión y pruebas remotas. Esta autorización conserva los pendientes de Verification y no constituye entrega final. El PR se abre como borrador; merge, tag, release y publicación npm siguen fuera del alcance autorizado. Las referencias confirmadas de publicación se registran a continuación cuando estén disponibles.
 
 La alineación de 004 se guardó en `4da2372` (`docs: alinea cierre e integración de 004`), incluido únicamente el hunk de integración de PROJECT. El commit siguiente reúne la implementación y documentación de 005, junto con el resto del contexto de PROJECT. Revisión documental del resguardo: 154 enlaces locales satisfactorios y diff --check sin errores. No cambió código ejecutable desde las pruebas registradas; este resguardo no añade evidencia multiplataforma.
+
+## Publicación para evaluación
+
+Por autorización explícita del usuario, se publicó `feat/install-update-cli` mediante push normal, sin force y con upstream `origin/feat/install-update-cli`. Primera revisión publicada: `aefee1a6c7ce2aa85561351ca3166fe8792e06dc`; incluye el código probado de `3d5143f00ef2bbbbd7c752323cdc35e39776e747` y documentación posterior. Git confirmó coincidencia HEAD/upstream.
+
+El conector de GitHub confirmó el [PR #5](https://github.com/lugonesnicolas/ndev-spec/pull/5), abierto y draft=true, head feat/install-update-cli en aefee1a, base main en `1fdb02f6070ca5ac8e1f6a227686ea1d42e1961b`, merged=false. Título y descripción en español, incluyendo alcance conjunto de 004/005 y pendientes de verificación. Sin merge, tag, release ni publicación npm.
+
+GitHub registró la ejecución [Installer tests #2](https://github.com/lugonesnicolas/ndev-spec/actions/runs/42648942828), en cola al consultar. Eso confirma lanzamiento de la matriz, no su resultado. Continuar revisando sus jobs y completar los ensayos remotos del canon y de npx fijados a commit. El commit documental posterior que incorpora este registro se publica en la misma rama/PR; no modifica el código probado ni marca Ship.
